@@ -11,10 +11,10 @@ PORT = 8000
 # تحديد مجلد المشروع الحالي
 PROJECT_DIR = Path(__file__).resolve().parent
 
-# قاعدة بيانات مصغرة للبحت الذكي عبر بايثون
+# قاعدة البيانات المدمجة للسيرفر
 DATABASE = [
     {"id": 1, "cat": "بلاغة", "title": "سجى دون غيرها", "verse": "﴿وَاللَّيْلِ إِذَا سَجَى﴾", "desc": "اختيار سجى يصور السكون والتغطية الكاملة للظلمة بلطف وراحة تامة.", "source": "سورة الضحى - آية 2"},
-    {"id": 2, "cat": "بلاغة", "title": "فعل نشرح", "verse": "﴿أَلَمْ نَشْرَحْ لَكَ صَدْرَكَ﴾", "desc": "استخدام الشرح للتعبير عن السعة والانفساح والطمأنينة الكاملة.", "source": "سورة الشرح - آية 1"},
+    {"id": 2, "cat": "بلاغة", "title": "فعل نشرح", "verse": "﴿أَلَمْ نَشْرَحْ لَكَ صَدْرَكَ﴾", desc: "استخدام الشرح للتعبير عن السعة والانفساح والطمأنينة الكاملة.", "source": "سورة الشرح - آية 1"},
     {"id": 3, "cat": "علمية", "title": "أصل الحياة", "verse": "﴿وَجَعَلْنَا مِنَ الْمَاءِ كُلَّ شَيْءٍ حَيٍّ﴾", desc: "ربط حقيقة الحياة بالسائل المائي كأصل لجميع الكائنات الحية.", "source": "سورة الأنبياء - آية 30"},
     {"id": 4, "cat": "علمية", "title": "توسع الكون", "verse": "﴿وَالسَّمَاءَ بَنَيْنَاهَا بِأَيْدٍ وَإِنَّا لَمُوسِعُونَ﴾", desc: "إشارة بيانية دقيقة لاستمرار اتساع الجرم السماوي والكون.", "source": "سورة الذاريات - آية 47"},
     {"id": 5, "cat": "بلاغة", "title": "الفرق بين جاء وأتى", "verse": "﴿جَاءَ الْحَقُّ وَزَهَقَ الْبَاطِلُ﴾", desc: "تستعمل جاء للأمور العظيمة الشديدة بينما أتى للأمور اليسيرة.", "source": "سورة الإسراء - آية 81"}
@@ -22,7 +22,6 @@ DATABASE = [
 
 class SmartSearchHandler(SimpleHTTPRequestHandler):
     def do_GET(self):
-        # تحليل الرابط للتحقق إذا كان الطلب عبارة عن بحث ذكي
         parsed_path = urllib.parse.urlparse(self.path)
         
         if parsed_path.path == "/api/search":
@@ -33,17 +32,13 @@ class SmartSearchHandler(SimpleHTTPRequestHandler):
             if not query:
                 results = DATABASE
             else:
-                # استخراج العناوين والنصوص للبحث الذكي والتقريبي
                 titles = [item["title"] for item in DATABASE]
-                # استخدام difflib للبحث الذكي حتى مع نقص الأحرف أو الأخطاء الإملائية
                 close_matches = difflib.get_close_matches(query, titles, n=5, cutoff=0.3)
                 
-                # مطابقة العناصر القريبة أو التي تحتوي على جزء من الكلمة
                 for item in DATABASE:
                     if query in item["title"].lower() or query in item["desc"].lower() or item["title"] in close_matches:
                         results.append(item)
             
-            # الرد بصيغة JSON
             self.send_response(200)
             self.send_header("Content-Type", "application/json; charset=utf-8")
             self.send_header("Cache-Control", "no-store")
@@ -51,7 +46,6 @@ class SmartSearchHandler(SimpleHTTPRequestHandler):
             self.wfile.write(json.dumps(results, ensure_ascii=False).encode("utf-8"))
             return
 
-        # تقديم الملفات الثابتة العادية (مثل index.html)
         super().do_GET()
 
     def end_headers(self):
@@ -62,12 +56,12 @@ def main():
     server = ThreadingHTTPServer((HOST, PORT), lambda *args, **kwargs: SmartSearchHandler(*args, directory=str(PROJECT_DIR), **kwargs))
     url = f"http://{HOST}:{PORT}"
 
-    print("=" * 50)
-    print(" مكتبة اللمسات البيانية القرآنية (بايثون - بحث ذكي) ")
+    print("=" * 55)
+    print(" مكتبة اللمسات البيانية القرآنية (خلفية أخضر غامق مريح) ")
     print(f" السيرفر يعمل الآن على الرابط: {url}")
-    print(" مميزة بايثون: البحث يتجاوز الأخطاء ونقص الأحرف تلقائياً")
+    print(" ميزة بايثون: بحث ذكي يتجاوز نقص الأحرف تلقائياً")
     print(" لإيقاف السيرفر اضغط على Ctrl + C")
-    print("=" * 50)
+    print("=" * 55)
 
     try:
         webbrowser.open(url)
