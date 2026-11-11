@@ -7,24 +7,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg: #ffffff;
-            --text: #111111;
-            --card-bg: #f8f8f6;
-            --border: #e5e5e5;
-            --gray: #666666;
-            --accent: #111111;
+            --bg: #0d231a; /* أخضر غامق مريح للعين */
+            --text: #f1f5f2;
+            --card-bg: #133124;
+            --border: #1f4d38;
+            --gray: #a3b8ad;
+            --accent: #2d7a57;
+            --accent-hover: #369168;
             --accent-text: #ffffff;
-            --shadow: 0 10px 30px rgba(0,0,0,0.05);
-        }
-
-        [data-theme="dark"] {
-            --bg: #121212;
-            --text: #f1f1f1;
-            --card-bg: #1c1c1e;
-            --border: #2c2c2e;
-            --gray: #a0a0a0;
-            --accent: #ffffff;
-            --accent-text: #111111;
             --shadow: 0 10px 30px rgba(0,0,0,0.3);
         }
 
@@ -69,6 +59,7 @@
 
         .logo span {
             font-weight: 300;
+            color: #79c7a5;
         }
 
         .nav {
@@ -87,27 +78,6 @@
             color: var(--text);
         }
 
-        .controls {
-            display: flex;
-            gap: 12px;
-        }
-
-        .btn-toggle {
-            padding: 8px 18px;
-            background: transparent;
-            border: 1px solid var(--border);
-            color: var(--text);
-            cursor: pointer;
-            font-family: inherit;
-            border-radius: 4px;
-            font-size: 13px;
-            transition: 0.3s;
-        }
-
-        .btn-toggle:hover {
-            background: var(--border);
-        }
-
         .hero {
             padding: 90px 8% 50px;
             text-align: center;
@@ -115,7 +85,7 @@
 
         .eyebrow {
             font-size: 13px;
-            color: var(--gray);
+            color: #79c7a5;
             letter-spacing: 1px;
         }
 
@@ -145,7 +115,7 @@
         }
 
         .main-btn:hover {
-            opacity: 0.85;
+            background: var(--accent-hover);
             transform: translateY(-2px);
         }
 
@@ -159,7 +129,7 @@
 
         .section-number {
             font-size: 12px;
-            color: var(--gray);
+            color: #79c7a5;
             display: block;
         }
 
@@ -186,7 +156,7 @@
         }
 
         .search-box input:focus {
-            border-color: var(--text);
+            border-color: #79c7a5;
         }
 
         .categories {
@@ -234,11 +204,12 @@
         .card:hover {
             transform: translateY(-6px);
             box-shadow: var(--shadow);
+            border-color: #2d7a57;
         }
 
         .card-label {
             font-size: 11px;
-            color: var(--gray);
+            color: #79c7a5;
             text-transform: uppercase;
             letter-spacing: 1px;
         }
@@ -253,7 +224,7 @@
             font-size: 21px;
             line-height: 1.9;
             margin: 12px 0;
-            color: var(--text);
+            color: #e2f0e8;
         }
 
         .card-desc {
@@ -265,8 +236,8 @@
         .read-btn {
             background: transparent;
             border: none;
-            border-bottom: 1px solid var(--text);
-            color: var(--text);
+            border-bottom: 1px solid #79c7a5;
+            color: #79c7a5;
             cursor: pointer;
             font-family: inherit;
             font-size: 13px;
@@ -277,7 +248,8 @@
         }
 
         .read-btn:hover {
-            opacity: 0.6;
+            color: var(--text);
+            border-color: var(--text);
         }
 
         .empty-message {
@@ -309,7 +281,7 @@
         .modal {
             position: fixed;
             inset: 0;
-            background: rgba(0, 0, 0, 0.7);
+            background: rgba(0, 0, 0, 0.75);
             display: none;
             justify-content: center;
             align-items: center;
@@ -323,7 +295,7 @@
         }
 
         .modal-content {
-            background: var(--bg);
+            background: #133124;
             border: 1px solid var(--border);
             width: 100%;
             max-width: 650px;
@@ -344,6 +316,11 @@
             cursor: pointer;
             font-family: inherit;
             border-radius: 4px;
+            transition: 0.3s;
+        }
+
+        .close-modal:hover {
+            background: var(--accent);
         }
 
         .modal-verse {
@@ -351,6 +328,7 @@
             font-size: 24px;
             margin: 20px 0;
             line-height: 2;
+            color: #e2f0e8;
         }
 
         .modal-content p {
@@ -362,7 +340,7 @@
         .modal-content small {
             display: block;
             margin-top: 25px;
-            color: var(--gray);
+            color: #79c7a5;
             font-size: 12px;
         }
 
@@ -390,10 +368,6 @@
         <a href="#home">الرئيسية</a>
         <a href="#library">المكتبة</a>
     </nav>
-
-    <div class="controls">
-        <button class="btn-toggle" id="themeToggle" type="button">الوضع المظلم</button>
-    </div>
 </header>
 
 <main>
@@ -464,7 +438,6 @@ const itemsData = [
     { cat: "علمية", title: "انكماش وصغر الصدر", verse: "﴿يَجْعَلْ صَدْرَهُ ضَيِّقًا حَرَجًا كَأَنَّمَا يَصَّعَّدُ فِي السَّمَاءِ﴾", desc: "وصف دقيق لنقص الأكسجين وانخفاض الضغط عند الارتفاع في طبقات الجو.", source: "سورة الأنعام - آية 125" }
 ];
 
-// تكرار ومضاعفة البيانات لتجاوز 70 لمسة بيانية معتمدة ومختلفة التفاصيل
 const titlesBase = ["التعبير بـ (امشوا) و (فسعوا)", "دقة النظم في (يحسبون)", "تقديم السمع على البصر", "سر الإظهار والإضمار", "سر التنكير في (خير)", "بلاغة التشابه في القريتين", "الزيادة في المبنى تدل على المعنى", "الفرق بين مطر وغيث", "دقة الوصف في سورة الكهف", "السر في استخدام (عسى)"];
 const versesBase = ["﴿فَامْشُوا فِي مَنَاكِبِهَا﴾", "﴿وَاللَّهُ يَحْكُمُ لا مُعَقِّبَ لِحُكْمِهِ﴾", "﴿وَجَعَلَ لَكُمُ السَّمْعَ وَالأَبْصَارَ﴾", "﴿إِنَّ مَعَ الْعُسْرِ يُسْرًا﴾", "﴿وَقُولُوا لِلنَّاسِ حُسْنًا﴾"];
 
@@ -482,34 +455,11 @@ for (let i = 16; i <= 75; i++) {
     });
 }
 
-// عناصر التحكم والصفحة
 const touchCards = document.getElementById("touchCards");
 const searchInput = document.getElementById("searchInput");
 const catBtns = document.querySelectorAll(".cat-btn");
 const emptyMessage = document.getElementById("emptyMessage");
-const themeToggle = document.getElementById("themeToggle");
 
-// التبديل بين الوضع المظلم والضوئي
-const savedTheme = localStorage.getItem("theme");
-if (savedTheme === "dark") {
-    document.documentElement.setAttribute("data-theme", "dark");
-    themeToggle.textContent = "الوضع الضوئي";
-}
-
-themeToggle.addEventListener("click", () => {
-    const current = document.documentElement.getAttribute("data-theme");
-    if (current === "dark") {
-        document.documentElement.removeAttribute("data-theme");
-        localStorage.setItem("theme", "light");
-        themeToggle.textContent = "الوضع المظلم";
-    } else {
-        document.documentElement.setAttribute("data-theme", "dark");
-        localStorage.setItem("theme", "dark");
-        themeToggle.textContent = "الوضع الضوئي";
-    }
-});
-
-// عرض بطاقات المكتبة
 function renderItems(items) {
     touchCards.innerHTML = "";
     if (items.length === 0) {
@@ -559,7 +509,6 @@ catBtns.forEach(btn => {
 
 searchInput.addEventListener("input", filterData);
 
-// النافذة التفاعلية (Modal)
 const modal = document.getElementById("articleModal");
 const closeModal = document.getElementById("closeModal");
 
@@ -589,7 +538,6 @@ modal.addEventListener("click", (e) => {
     }
 });
 
-// العرض الأولي عند الفتح
 renderItems(itemsData);
 </script>
 
