@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg: #0d231a; /* أخضر غامق مريح للعين */
+            --bg: #0d231a;
             --text: #f1f5f2;
             --card-bg: #133124;
             --border: #1f4d38;
@@ -42,7 +42,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: var(--bg);
+            background: rgba(13, 35, 26, 0.92);
             border-bottom: 1px solid var(--border);
             position: sticky;
             top: 0;
@@ -55,6 +55,7 @@
             font-weight: 800;
             text-decoration: none;
             color: var(--text);
+            cursor: pointer;
         }
 
         .logo span {
@@ -64,7 +65,8 @@
 
         .nav {
             display: flex;
-            gap: 25px;
+            align-items: center;
+            gap: 20px;
         }
 
         .nav a {
@@ -72,10 +74,48 @@
             color: var(--gray);
             font-size: 15px;
             transition: 0.3s;
+            cursor: pointer;
         }
 
         .nav a:hover {
             color: var(--text);
+        }
+
+        /* تصميم مربعي للزر العلوي */
+        .update-nav-btn {
+            background: linear-gradient(135deg, #2d7a57, #1f5c40);
+            color: #ffffff !important;
+            padding: 8px 18px;
+            border-radius: 4px;
+            font-weight: 700;
+            font-size: 14px !important;
+            border: 1px solid #79c7a5;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 15px rgba(45, 122, 87, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .update-nav-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(121, 199, 165, 0.5);
+            background: linear-gradient(135deg, #369168, #26704e);
+        }
+
+        .pulse-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #79c7a5;
+            border-radius: 2px;
+            display: inline-block;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(121, 199, 165, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(121, 199, 165, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(121, 199, 165, 0); }
         }
 
         .hero {
@@ -103,6 +143,7 @@
             font-size: 17px;
         }
 
+        /* أزرار مربعية */
         .main-btn {
             display: inline-block;
             background: var(--accent);
@@ -112,6 +153,10 @@
             font-weight: bold;
             transition: 0.3s;
             border-radius: 4px;
+            border: 1px solid var(--accent);
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 15px;
         }
 
         .main-btn:hover {
@@ -142,6 +187,7 @@
             margin-bottom: 25px;
         }
 
+        /* حقل بحث بمظهر مربعي */
         .search-box input {
             width: 100%;
             padding: 16px 20px;
@@ -151,7 +197,7 @@
             font-family: inherit;
             font-size: 15px;
             outline: none;
-            border-radius: 6px;
+            border-radius: 4px;
             transition: 0.3s;
         }
 
@@ -166,6 +212,7 @@
             margin-bottom: 35px;
         }
 
+        /* أزرار الفئات المربعة */
         .cat-btn {
             padding: 8px 18px;
             background: var(--card-bg);
@@ -190,11 +237,12 @@
             gap: 25px;
         }
 
+        /* بطاقات مربعة الشكل بزوايا شبه حادة */
         .card {
             background: var(--card-bg);
             border: 1px solid var(--border);
             padding: 28px;
-            border-radius: 8px;
+            border-radius: 4px;
             transition: transform 0.4s ease, box-shadow 0.4s ease;
             display: flex;
             flex-direction: column;
@@ -259,6 +307,176 @@
             font-size: 16px;
         }
 
+        /* صفحة التحديث الإعلانية بتصميم مربعي */
+        #updatePage {
+            display: none;
+            padding: 70px 8% 90px;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .promo-banner {
+            background: radial-gradient(circle at top right, #1b4734 0%, #133124 60%, #0d231a 100%);
+            border: 1px solid #2d7a57;
+            border-radius: 4px;
+            padding: 60px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+            margin-bottom: 50px;
+        }
+
+        .promo-badge {
+            display: inline-block;
+            background: rgba(121, 199, 165, 0.15);
+            color: #79c7a5;
+            border: 1px solid #79c7a5;
+            padding: 6px 18px;
+            border-radius: 4px;
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .promo-banner h1 {
+            font-size: clamp(30px, 4.5vw, 48px);
+            font-weight: 800;
+            margin-bottom: 18px;
+            line-height: 1.3;
+        }
+
+        .promo-banner h1 span {
+            color: #79c7a5;
+        }
+
+        .promo-banner p {
+            color: var(--gray);
+            font-size: 18px;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+
+        .promo-stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin-top: 35px;
+            padding-top: 35px;
+            border-top: 1px solid rgba(121, 199, 165, 0.2);
+        }
+
+        .stat-item h3 {
+            font-size: 36px;
+            color: #79c7a5;
+            font-weight: 800;
+        }
+
+        .stat-item span {
+            font-size: 14px;
+            color: var(--gray);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+
+        .feature-box {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 35px 28px;
+            transition: 0.3s;
+            position: relative;
+        }
+
+        .feature-box:hover {
+            transform: translateY(-6px);
+            border-color: #79c7a5;
+            box-shadow: var(--shadow);
+        }
+
+        .feature-num {
+            display: inline-block;
+            font-size: 13px;
+            font-weight: 800;
+            color: #79c7a5;
+            background: rgba(45, 122, 87, 0.25);
+            border: 1px solid #2d7a57;
+            padding: 4px 12px;
+            border-radius: 4px;
+            margin-bottom: 16px;
+        }
+
+        .feature-box h3 {
+            font-size: 22px;
+            margin-bottom: 12px;
+            color: var(--text);
+        }
+
+        .feature-box p {
+            color: var(--gray);
+            font-size: 15px;
+            line-height: 1.8;
+        }
+
+        .promo-cta {
+            text-align: center;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            padding: 40px;
+            border-radius: 4px;
+        }
+
+        .promo-cta h2 {
+            font-size: 26px;
+            margin-bottom: 12px;
+        }
+
+        .promo-cta p {
+            color: var(--gray);
+            margin-bottom: 25px;
+        }
+
+        /* زر العودة إلى الأعلى بتصميم مربعي */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background: var(--accent);
+            color: var(--accent-text);
+            border: 1px solid #79c7a5;
+            padding: 12px 18px;
+            border-radius: 4px;
+            font-family: inherit;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(15px);
+            transition: all 0.3s ease;
+            z-index: 150;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .back-to-top:hover {
+            background: var(--accent-hover);
+            transform: translateY(-3px);
+        }
+
         footer {
             padding: 50px 8%;
             text-align: center;
@@ -278,6 +496,7 @@
             font-size: 13px;
         }
 
+        /* النافذة المنخفضة (Modal) بمظهر مربعي */
         .modal {
             position: fixed;
             inset: 0;
@@ -302,7 +521,7 @@
             max-height: 85vh;
             overflow-y: auto;
             padding: 40px;
-            border-radius: 8px;
+            border-radius: 4px;
             box-shadow: var(--shadow);
             animation: fadeIn 0.3s ease;
         }
@@ -351,30 +570,36 @@
 
         @media (max-width: 768px) {
             .header { padding: 0 5%; }
-            .nav { display: none; }
+            .nav a:not(.update-nav-btn) { display: none; }
             .hero { padding: 60px 5% 30px; }
             .section { padding: 40px 5%; }
             .cards { grid-template-columns: 1fr; }
             .modal-content { padding: 25px; }
+            .promo-banner { padding: 40px 20px; }
+            .back-to-top { bottom: 20px; left: 20px; padding: 10px 14px; font-size: 13px; }
         }
     </style>
 </head>
 <body>
 
 <header class="header">
-    <a href="#" class="logo">لمسات <span>بيانية</span></a>
+    <a onclick="showMainPage()" class="logo">لمسات <span>بيانية</span></a>
 
     <nav class="nav">
-        <a href="#home">الرئيسية</a>
-        <a href="#library">المكتبة</a>
+        <a onclick="showMainPage('#home')">الرئيسية</a>
+        <a onclick="showMainPage('#library')">المكتبة</a>
+        <a onclick="showUpdatePage()" class="update-nav-btn">
+            <span class="pulse-dot"></span>
+            التحديث الجديد
+        </a>
     </nav>
 </header>
 
-<main>
+<main id="mainPage">
     <section class="hero" id="home">
         <div class="hero-content">
-            <span class="eyebrow"> مكتبة عجائب القرآن</span>
-            <h1>مكتبة اللمسات البيانية والمعجزات القرآنية التحديث الجديد قادم</h1>
+            <span class="eyebrow">مكتبة عجائب القرآن</span>
+            <h1>مكتبة اللمسات البيانية والمعجزات القرآنية</h1>
             <p>تأملات موثوقة ودقيقة في بلاغة اللفظ، ودقة التعبير، وعجائب النظم القرآني.</p>
             <a href="#library" class="main-btn">تصفح المكتبة الشاملة</a>
         </div>
@@ -403,6 +628,62 @@
     </section>
 </main>
 
+<section id="updatePage">
+    <div class="promo-banner">
+        <span class="promo-badge">إصدار 2.0 القادم قريباً</span>
+        <h1>تجربة قرآنية أعمق في <span>التحديث الجديد</span></h1>
+        <p>نعمل على تطوير مكتبة اللمسات البيانية لتكون رفيقك اليومي في تدبر القرآن الكريم، بمحتوى أوسع وتصميم أكثر سلاسة وجمالاً.</p>
+        
+        <div class="promo-stats">
+            <div class="stat-item">
+                <h3>100+</h3>
+                <span>آية ولمسة بيانية موثقة</span>
+            </div>
+            <div class="stat-item">
+                <h3>3x</h3>
+                <span>سرعة وسهولة في التصفح</span>
+            </div>
+            <div class="stat-item">
+                <h3>100%</h3>
+                <span>تصميم عصري مريح للعين</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="features-grid">
+        <div class="feature-box">
+            <span class="feature-num">01</span>
+            <h3>محتوى موسّع (100 آية)</h3>
+            <p>تمت إضافة مجموعة جديدة ومختارة بعناية ليصل إجمالي المكتبة إلى 100 آية ولمسة بيانية تشمل أسرار البلاغة، الإعجاز العلمي، والتناسق العددي في القرآن الكريم.</p>
+        </div>
+
+        <div class="feature-box">
+            <span class="feature-num">02</span>
+            <h3>تعامل أسهل وتجربة سلسة</h3>
+            <p>تحسين محرك البحث الذكي ليجد الآيات والتأملات فوراً حتى مع الأخطاء الإملائية البسيطة، مع تنقل أسرع بين الأقسام وتصفح مريح على الجوال والكمبيوتر.</p>
+        </div>
+
+        <div class="feature-box">
+            <span class="feature-num">03</span>
+            <h3>شكل أفضل وهوية بصرية راقية</h3>
+            <p>تحديث شامل للواجهة والبطاقات وخطوط عرض الآيات القرآنية لتمنحك تجربة قراءة هادئة، مريحة للعين، وتساعد على التركيز والتدبر العميق.</p>
+        </div>
+    </div>
+
+    <div class="promo-cta">
+        <h2>هل أنت مستعد لاستكشاف عجائب القرآن؟</h2>
+        <p>يمكنك تصفح الإصدار الحالي الآن ريثما يتم إطلاق التحديث الكامل قريباً.</p>
+        <button onclick="showMainPage()" class="main-btn">العودة إلى المكتبة الرئيسية</button>
+    </div>
+</section>
+
+<button id="backToTopBtn" class="back-to-top" onclick="scrollToTop()" title="العودة إلى الأعلى">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M18 15l-6-6-6 6"/>
+    </svg>
+    <span>الأعلى</span>
+</button>
+
 <footer>
     <div class="footer-logo">لمسات بيانية قرآنية</div>
     <p>مكتبة عجائب القرآن الكريم</p>
@@ -420,6 +701,54 @@
 </div>
 
 <script>
+const mainPage = document.getElementById("mainPage");
+const updatePage = document.getElementById("updatePage");
+const backToTopBtn = document.getElementById("backToTopBtn");
+
+function showUpdatePage() {
+    mainPage.style.display = "none";
+    updatePage.style.display = "block";
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    history.pushState({ page: "update" }, "التحديث الجديد", "/update");
+}
+
+function showMainPage(anchor = "") {
+    updatePage.style.display = "none";
+    mainPage.style.display = "block";
+    history.pushState({ page: "home" }, "الرئيسية", "/");
+    if (anchor) {
+        const target = document.querySelector(anchor);
+        if (target) target.scrollIntoView({ behavior: "smooth" });
+    } else {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+}
+
+function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+window.addEventListener("scroll", () => {
+    if (window.scrollY > 350) {
+        backToTopBtn.classList.add("visible");
+    } else {
+        backToTopBtn.classList.remove("visible");
+    }
+});
+
+window.addEventListener("popstate", () => {
+    if (window.location.pathname === "/update") {
+        showUpdatePage();
+    } else {
+        updatePage.style.display = "none";
+        mainPage.style.display = "block";
+    }
+});
+
+if (window.location.pathname === "/update") {
+    showUpdatePage();
+}
+
 const itemsData = [
     { cat: "بلاغة", title: "سجى دون غيرها", verse: "﴿وَاللَّيْلِ إِذَا سَجَى﴾", desc: "اختيار سجى يصور السكون والتغطية الكاملة للظلمة بلطف وراحة تامة.", source: "سورة الضحى - آية 2" },
     { cat: "بلاغة", title: "فعل نشرح", verse: "﴿أَلَمْ نَشْرَحْ لَكَ صَدْرَكَ﴾", desc: "استخدام الشرح للتعبير عن السعة والانفساح والطمأنينة الكاملة.", source: "سورة الشرح - آية 1" },
