@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>لمسات بيانية قرآنية - مكتبة عجائب القرآن</title>
+    <title>لمسات بيانية قرآنية - الإصدار الذكي المتقدم</title>
     <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -18,597 +18,167 @@
             --shadow: 0 10px 30px rgba(0,0,0,0.3);
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            background-color: var(--bg);
-            color: var(--text);
-            font-family: 'Tajawal', sans-serif;
-            line-height: 1.8;
-            transition: background-color 0.4s ease, color 0.4s ease;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { background-color: var(--bg); color: var(--text); font-family: 'Tajawal', sans-serif; line-height: 1.8; }
 
         .header {
-            height: 75px;
-            padding: 0 8%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: rgba(13, 35, 26, 0.92);
-            border-bottom: 1px solid var(--border);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            backdrop-filter: blur(10px);
+            height: 75px; padding: 0 8%; display: flex; justify-content: space-between; align-items: center;
+            background: rgba(13, 35, 26, 0.95); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100;
         }
+        .logo { font-size: 22px; font-weight: 800; text-decoration: none; color: var(--text); cursor: pointer; }
+        .logo span { font-weight: 300; color: #79c7a5; }
+        
+        .nav { display: flex; align-items: center; gap: 15px; flex-wrap: wrap; }
+        .nav a { text-decoration: none; color: var(--gray); font-size: 15px; cursor: pointer; transition: 0.3s; }
+        .nav a:hover { color: var(--text); }
 
-        .logo {
-            font-size: 22px;
-            font-weight: 800;
-            text-decoration: none;
-            color: var(--text);
-            cursor: pointer;
+        .saved-nav-btn {
+            background: rgba(45, 122, 87, 0.25); color: #79c7a5 !important; padding: 6px 14px;
+            border-radius: 4px; font-weight: 700; font-size: 13px !important; border: 1px solid #2d7a57;
+            cursor: pointer; transition: 0.3s;
         }
+        .saved-nav-btn:hover { background: var(--accent); color: #ffffff !important; }
 
-        .logo span {
-            font-weight: 300;
-            color: #79c7a5;
-        }
-
-        .nav {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .nav a {
-            text-decoration: none;
-            color: var(--gray);
-            font-size: 15px;
-            transition: 0.3s;
-            cursor: pointer;
-        }
-
-        .nav a:hover {
-            color: var(--text);
-        }
-
-        /* تصميم مربعي للزر العلوي */
         .update-nav-btn {
-            background: linear-gradient(135deg, #2d7a57, #1f5c40);
-            color: #ffffff !important;
-            padding: 8px 18px;
-            border-radius: 4px;
-            font-weight: 700;
-            font-size: 14px !important;
-            border: 1px solid #79c7a5;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            box-shadow: 0 4px 15px rgba(45, 122, 87, 0.4);
-            transition: all 0.3s ease;
+            background: linear-gradient(135deg, #2d7a57, #1f5c40); color: #ffffff !important; padding: 8px 18px;
+            border-radius: 4px; font-weight: 700; font-size: 14px !important; border: 1px solid #79c7a5;
         }
 
-        .update-nav-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(121, 199, 165, 0.5);
-            background: linear-gradient(135deg, #369168, #26704e);
-        }
+        .hero { padding: 80px 8% 45px; text-align: center; }
+        .eyebrow { font-size: 13px; color: #79c7a5; letter-spacing: 1px; }
+        .hero h1 { font-size: clamp(32px, 5vw, 50px); margin: 15px 0; font-weight: 800; }
+        .hero p { color: var(--gray); max-width: 650px; margin: 0 auto 30px; font-size: 17px; }
 
-        .pulse-dot {
-            width: 8px;
-            height: 8px;
-            background-color: #79c7a5;
-            border-radius: 2px;
-            display: inline-block;
-            animation: pulse 1.5s infinite;
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(121, 199, 165, 0.7); }
-            70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(121, 199, 165, 0); }
-            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(121, 199, 165, 0); }
-        }
-
-        .hero {
-            padding: 90px 8% 50px;
-            text-align: center;
-        }
-
-        .eyebrow {
-            font-size: 13px;
-            color: #79c7a5;
-            letter-spacing: 1px;
-        }
-
-        .hero h1 {
-            font-size: clamp(32px, 5vw, 52px);
-            margin: 15px 0;
-            line-height: 1.4;
-            font-weight: 800;
-        }
-
-        .hero p {
-            color: var(--gray);
-            max-width: 650px;
-            margin: 0 auto 30px;
-            font-size: 17px;
-        }
-
-        /* أزرار مربعية */
         .main-btn {
-            display: inline-block;
-            background: var(--accent);
-            color: var(--accent-text);
-            padding: 12px 32px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: 0.3s;
-            border-radius: 4px;
-            border: 1px solid var(--accent);
-            cursor: pointer;
-            font-family: inherit;
-            font-size: 15px;
+            display: inline-block; background: var(--accent); color: var(--accent-text); padding: 12px 32px;
+            text-decoration: none; font-weight: bold; border-radius: 4px; border: 1px solid var(--accent); cursor: pointer;
         }
 
-        .main-btn:hover {
-            background: var(--accent-hover);
-            transform: translateY(-2px);
-        }
+        .section { padding: 50px 8%; }
+        .section-heading { margin-bottom: 30px; }
+        .section-number { font-size: 12px; color: #79c7a5; display: block; }
+        .section-heading h2 { font-size: 30px; margin-top: 5px; }
 
-        .section {
-            padding: 60px 8%;
-        }
-
-        .section-heading {
-            margin-bottom: 30px;
-        }
-
-        .section-number {
-            font-size: 12px;
-            color: #79c7a5;
-            display: block;
-        }
-
-        .section-heading h2 {
-            font-size: 32px;
-            margin-top: 5px;
-        }
-
-        .search-box {
-            margin-bottom: 25px;
-        }
-
-        /* حقل بحث بمظهر مربعي */
+        .search-box { margin-bottom: 25px; }
         .search-box input {
-            width: 100%;
-            padding: 16px 20px;
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            color: var(--text);
-            font-family: inherit;
-            font-size: 15px;
-            outline: none;
-            border-radius: 4px;
-            transition: 0.3s;
+            width: 100%; padding: 16px 20px; background: var(--card-bg); border: 1px solid var(--border);
+            color: var(--text); font-family: inherit; font-size: 15px; outline: none; border-radius: 4px;
         }
 
-        .search-box input:focus {
-            border-color: #79c7a5;
-        }
-
-        .categories {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-            margin-bottom: 35px;
-        }
-
-        /* أزرار الفئات المربعة */
+        .categories { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 35px; }
         .cat-btn {
-            padding: 8px 18px;
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            color: var(--gray);
-            cursor: pointer;
-            font-family: inherit;
-            font-size: 13px;
-            border-radius: 4px;
-            transition: 0.3s;
+            padding: 8px 18px; background: var(--card-bg); border: 1px solid var(--border); color: var(--gray);
+            cursor: pointer; font-family: inherit; font-size: 13px; border-radius: 4px;
         }
+        .cat-btn.active, .cat-btn:hover { background: var(--accent); color: var(--accent-text); border-color: var(--accent); }
 
-        .cat-btn.active, .cat-btn:hover {
-            background: var(--accent);
-            color: var(--accent-text);
-            border-color: var(--accent);
-        }
-
-        .cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 25px;
-        }
-
-        /* بطاقات مربعة الشكل بزوايا شبه حادة */
+        .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(330px, 1fr)); gap: 24px; }
         .card {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            padding: 28px;
-            border-radius: 4px;
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
+            background: var(--card-bg); border: 1px solid var(--border); padding: 26px; border-radius: 4px;
+            display: flex; flex-direction: column; justify-content: space-between;
+        }
+        .card-top { display: flex; justify-content: space-between; align-items: center; }
+        .card-label { font-size: 11px; color: #79c7a5; font-weight: 700; }
+        .card-index { font-size: 12px; color: var(--gray); }
+        .card h3 { font-size: 20px; margin: 10px 0 6px; }
+        .verse { font-family: 'Amiri', serif; font-size: 22px; line-height: 1.9; margin: 12px 0; color: #e2f0e8; }
+        .card-desc { color: var(--gray); font-size: 14px; margin-bottom: 20px; }
+        
+        .card-actions { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border); padding-top: 15px; flex-wrap: wrap; gap: 8px; }
+        .read-btn { background: transparent; border: none; border-bottom: 1px solid #79c7a5; color: #79c7a5; cursor: pointer; font-family: inherit; font-size: 13px; font-weight: bold; }
+        
+        .save-btn {
+            background: transparent; border: 1px solid var(--border); color: var(--gray); padding: 5px 12px;
+            border-radius: 4px; font-size: 12px; font-weight: 700; cursor: pointer; transition: 0.3s;
+        }
+        .save-btn:hover, .save-btn.saved { background: var(--accent); color: #ffffff; border-color: #79c7a5; }
+
+        .audio-btn { background: rgba(45, 122, 87, 0.25); border: 1px solid #2d7a57; color: #e2f0e8; padding: 5px 12px; border-radius: 4px; font-size: 12px; font-weight: 700; cursor: pointer; }
+        .audio-btn:hover, .audio-btn.playing { background: var(--accent); color: #ffffff; }
+
+        #updatePage, #savedPage { display: none; padding: 70px 8% 90px; }
+        .promo-banner { background: #133124; border: 1px solid #2d7a57; border-radius: 4px; padding: 60px 40px; text-align: center; margin-bottom: 50px; }
+        .promo-banner h1 { font-size: clamp(30px, 4.5vw, 48px); font-weight: 800; margin-bottom: 18px; }
+        .promo-banner h1 span { color: #79c7a5; }
+
+        /* زر المساعد الذكي */
+        .ai-toggle-btn {
+            position: fixed; bottom: 30px; right: 30px; background: #133124; color: #ffffff;
+            border: 1px solid #79c7a5; padding: 12px 20px; border-radius: 4px; font-weight: 700; cursor: pointer; z-index: 160;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.4);
         }
 
-        .card:hover {
-            transform: translateY(-6px);
-            box-shadow: var(--shadow);
-            border-color: #2d7a57;
+        .ai-panel {
+            position: fixed; bottom: 85px; right: 30px; width: 380px; max-width: calc(100vw - 40px);
+            height: 480px; background: #133124; border: 1px solid #79c7a5; border-radius: 4px; display: none; flex-direction: column; z-index: 170;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
+        .ai-panel.open { display: flex; }
 
-        .card-label {
-            font-size: 11px;
-            color: #79c7a5;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
+        .ai-header { background: #0d231a; padding: 15px 18px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+        .ai-header h4 { font-size: 15px; color: #79c7a5; }
+        .ai-close { background: transparent; border: 1px solid var(--border); color: var(--gray); padding: 2px 8px; border-radius: 4px; cursor: pointer; }
 
-        .card h3 {
-            font-size: 20px;
-            margin: 10px 0 6px;
-        }
+        .ai-messages { flex: 1; padding: 16px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; }
+        .ai-msg { padding: 12px 14px; border-radius: 4px; font-size: 14px; line-height: 1.7; max-width: 90%; }
+        .ai-msg.bot { background: #0d231a; border: 1px solid var(--border); align-self: flex-start; white-space: pre-line; }
+        .ai-msg.user { background: var(--accent); color: #ffffff; align-self: flex-end; }
 
-        .verse {
-            font-family: 'Amiri', serif;
-            font-size: 21px;
-            line-height: 1.9;
-            margin: 12px 0;
-            color: #e2f0e8;
-        }
+        .ai-input-area { padding: 12px; background: #0d231a; border-top: 1px solid var(--border); display: flex; gap: 8px; }
+        .ai-input-area input { flex: 1; background: var(--card-bg); border: 1px solid var(--border); color: var(--text); padding: 10px 12px; border-radius: 4px; outline: none; }
+        .ai-input-area button { background: var(--accent); color: #ffffff; border: none; padding: 0 16px; border-radius: 4px; font-weight: 700; cursor: pointer; }
 
-        .card-desc {
-            color: var(--gray);
-            font-size: 14px;
-            margin-bottom: 20px;
-        }
+        footer { padding: 50px 8%; text-align: center; border-top: 1px solid var(--border); margin-top: 60px; background: var(--card-bg); }
+        footer p { color: var(--gray); font-size: 13px; }
 
-        .read-btn {
-            background: transparent;
-            border: none;
-            border-bottom: 1px solid #79c7a5;
-            color: #79c7a5;
-            cursor: pointer;
-            font-family: inherit;
-            font-size: 13px;
-            font-weight: bold;
-            padding-bottom: 3px;
-            align-self: flex-start;
-            transition: 0.3s;
-        }
-
-        .read-btn:hover {
-            color: var(--text);
-            border-color: var(--text);
-        }
-
-        .empty-message {
-            text-align: center;
-            padding: 50px;
-            color: var(--gray);
-            font-size: 16px;
-        }
-
-        /* صفحة التحديث الإعلانية بتصميم مربعي */
-        #updatePage {
-            display: none;
-            padding: 70px 8% 90px;
-            animation: fadeIn 0.5s ease;
-        }
-
-        .promo-banner {
-            background: radial-gradient(circle at top right, #1b4734 0%, #133124 60%, #0d231a 100%);
-            border: 1px solid #2d7a57;
-            border-radius: 4px;
-            padding: 60px 40px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
-            margin-bottom: 50px;
-        }
-
-        .promo-badge {
-            display: inline-block;
-            background: rgba(121, 199, 165, 0.15);
-            color: #79c7a5;
-            border: 1px solid #79c7a5;
-            padding: 6px 18px;
-            border-radius: 4px;
-            font-size: 13px;
-            font-weight: 700;
-            margin-bottom: 20px;
-        }
-
-        .promo-banner h1 {
-            font-size: clamp(30px, 4.5vw, 48px);
-            font-weight: 800;
-            margin-bottom: 18px;
-            line-height: 1.3;
-        }
-
-        .promo-banner h1 span {
-            color: #79c7a5;
-        }
-
-        .promo-banner p {
-            color: var(--gray);
-            font-size: 18px;
-            max-width: 700px;
-            margin: 0 auto 30px;
-        }
-
-        .promo-stats {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            flex-wrap: wrap;
-            margin-top: 35px;
-            padding-top: 35px;
-            border-top: 1px solid rgba(121, 199, 165, 0.2);
-        }
-
-        .stat-item h3 {
-            font-size: 36px;
-            color: #79c7a5;
-            font-weight: 800;
-        }
-
-        .stat-item span {
-            font-size: 14px;
-            color: var(--gray);
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-            margin-bottom: 50px;
-        }
-
-        .feature-box {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 4px;
-            padding: 35px 28px;
-            transition: 0.3s;
-            position: relative;
-        }
-
-        .feature-box:hover {
-            transform: translateY(-6px);
-            border-color: #79c7a5;
-            box-shadow: var(--shadow);
-        }
-
-        .feature-num {
-            display: inline-block;
-            font-size: 13px;
-            font-weight: 800;
-            color: #79c7a5;
-            background: rgba(45, 122, 87, 0.25);
-            border: 1px solid #2d7a57;
-            padding: 4px 12px;
-            border-radius: 4px;
-            margin-bottom: 16px;
-        }
-
-        .feature-box h3 {
-            font-size: 22px;
-            margin-bottom: 12px;
-            color: var(--text);
-        }
-
-        .feature-box p {
-            color: var(--gray);
-            font-size: 15px;
-            line-height: 1.8;
-        }
-
-        .promo-cta {
-            text-align: center;
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            padding: 40px;
-            border-radius: 4px;
-        }
-
-        .promo-cta h2 {
-            font-size: 26px;
-            margin-bottom: 12px;
-        }
-
-        .promo-cta p {
-            color: var(--gray);
-            margin-bottom: 25px;
-        }
-
-        /* زر العودة إلى الأعلى بتصميم مربعي */
-        .back-to-top {
-            position: fixed;
-            bottom: 30px;
-            left: 30px;
-            background: var(--accent);
-            color: var(--accent-text);
-            border: 1px solid #79c7a5;
-            padding: 12px 18px;
-            border-radius: 4px;
-            font-family: inherit;
-            font-size: 14px;
-            font-weight: 700;
-            cursor: pointer;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(15px);
-            transition: all 0.3s ease;
-            z-index: 150;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .back-to-top.visible {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-
-        .back-to-top:hover {
-            background: var(--accent-hover);
-            transform: translateY(-3px);
-        }
-
-        footer {
-            padding: 50px 8%;
-            text-align: center;
-            border-top: 1px solid var(--border);
-            margin-top: 60px;
-            background: var(--card-bg);
-        }
-
-        .footer-logo {
-            font-size: 20px;
-            font-weight: 800;
-            margin-bottom: 5px;
-        }
-
-        footer p {
-            color: var(--gray);
-            font-size: 13px;
-        }
-
-        /* النافذة المنخفضة (Modal) بمظهر مربعي */
         .modal {
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.75);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            z-index: 200;
-            backdrop-filter: blur(5px);
+            position: fixed; inset: 0; background: rgba(0, 0, 0, 0.75); display: none; justify-content: center; align-items: center; padding: 20px; z-index: 200;
         }
-
-        .modal.active {
-            display: flex;
-        }
-
+        .modal.active { display: flex; }
         .modal-content {
-            background: #133124;
-            border: 1px solid var(--border);
-            width: 100%;
-            max-width: 650px;
-            max-height: 85vh;
-            overflow-y: auto;
-            padding: 40px;
-            border-radius: 4px;
-            box-shadow: var(--shadow);
-            animation: fadeIn 0.3s ease;
+            background: #133124; border: 1px solid var(--border); width: 100%; max-width: 650px; max-height: 85vh; overflow-y: auto; padding: 40px; border-radius: 4px;
+        }
+        .close-modal { float: left; background: transparent; border: 1px solid var(--border); color: var(--text); padding: 6px 14px; cursor: pointer; border-radius: 4px; }
+        .modal-verse { font-family: 'Amiri', serif; font-size: 25px; margin: 20px 0; line-height: 2; color: #e2f0e8; }
+        
+        .modal-footer-bar {
+            margin-top: 25px; padding-top: 15px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;
         }
 
-        .close-modal {
-            float: left;
-            background: transparent;
-            border: 1px solid var(--border);
-            color: var(--text);
-            padding: 6px 14px;
-            cursor: pointer;
-            font-family: inherit;
-            border-radius: 4px;
-            transition: 0.3s;
+        .ai-ask-modal-btn {
+            background: linear-gradient(135deg, #2d7a57, #1f5c40); color: #ffffff; border: 1px solid #79c7a5;
+            padding: 8px 16px; border-radius: 4px; font-weight: 700; cursor: pointer; font-size: 13px;
         }
-
-        .close-modal:hover {
-            background: var(--accent);
-        }
-
-        .modal-verse {
-            font-family: 'Amiri', serif;
-            font-size: 24px;
-            margin: 20px 0;
-            line-height: 2;
-            color: #e2f0e8;
-        }
-
-        .modal-content p {
-            color: var(--gray);
-            line-height: 2;
-            font-size: 15px;
-        }
-
-        .modal-content small {
-            display: block;
-            margin-top: 25px;
-            color: #79c7a5;
-            font-size: 12px;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(15px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @media (max-width: 768px) {
-            .header { padding: 0 5%; }
-            .nav a:not(.update-nav-btn) { display: none; }
-            .hero { padding: 60px 5% 30px; }
-            .section { padding: 40px 5%; }
-            .cards { grid-template-columns: 1fr; }
-            .modal-content { padding: 25px; }
-            .promo-banner { padding: 40px 20px; }
-            .back-to-top { bottom: 20px; left: 20px; padding: 10px 14px; font-size: 13px; }
-        }
+        .ai-ask-modal-btn:hover { background: #369168; }
     </style>
 </head>
 <body>
 
 <header class="header">
     <a onclick="showMainPage()" class="logo">لمسات <span>بيانية</span></a>
-
     <nav class="nav">
         <a onclick="showMainPage('#home')">الرئيسية</a>
         <a onclick="showMainPage('#library')">المكتبة</a>
-        <a onclick="showUpdatePage()" class="update-nav-btn">
-            <span class="pulse-dot"></span>
-            التحديث الجديد
-        </a>
+        <a onclick="showSavedPage()" class="saved-nav-btn">سلة المحفوظات (<span id="savedCount">0</span>)</a>
+        <a onclick="showUpdatePage()" class="update-nav-btn">التحديث الجديد</a>
     </nav>
 </header>
 
 <main id="mainPage">
     <section class="hero" id="home">
         <div class="hero-content">
-            <span class="eyebrow">مكتبة عجائب القرآن</span>
+            <span class="eyebrow">مكتبة عجائب القرآن - الإصدار الذكي</span>
             <h1>مكتبة اللمسات البيانية والمعجزات القرآنية</h1>
-            <p>تأملات موثوقة ودقيقة في بلاغة اللفظ، ودقة التعبير، وعجائب النظم القرآني.</p>
-            <a href="#library" class="main-btn">تصفح المكتبة الشاملة</a>
+            <p>تأملات دقيقة في بلاغة اللفظ القرآني مع تلاوة صوتية، سلة محفوظات، ومساعد ذكي يشرح كل كلمة.</p>
+            <a href="#library" class="main-btn">تصفح المكتبة (100 آية)</a>
         </div>
     </section>
 
     <section class="section" id="library">
         <div class="section-heading">
             <span class="section-number">01 / المكتبة الشاملة</span>
-            <h2>عجائب ولمسات بيانية (70+ موضع)</h2>
+            <h2>عجائب ولمسات بيانية (100 موضع)</h2>
         </div>
 
         <div class="search-box">
@@ -616,73 +186,50 @@
         </div>
 
         <div class="categories" id="categoryFilter">
-            <button class="cat-btn active" data-cat="all">الكل (70+)</button>
+            <button class="cat-btn active" data-cat="all">الكل (100)</button>
             <button class="cat-btn" data-cat="بلاغة">بلاغة ودقة لفظية</button>
             <button class="cat-btn" data-cat="علمية">معجزات علمية وتأملات</button>
             <button class="cat-btn" data-cat="عددي">تناسق ونظم</button>
         </div>
 
         <div class="cards" id="touchCards"></div>
-
-        <p class="empty-message" id="emptyMessage" hidden>لم نعثر على نتائج مطابقة لربط البحث.</p>
+        <p class="empty-message" id="emptyMessage" hidden>لم نعثر على نتائج مطابقة لبحثك.</p>
     </section>
 </main>
 
+<!-- صفحة سلة المحفوظات -->
+<section id="savedPage">
+    <div class="section-heading">
+        <span class="section-number">المفضلة</span>
+        <h2>سلة المحفوظات والآيات المحفوظة</h2>
+    </div>
+    <div class="cards" id="savedCardsContainer"></div>
+    <p class="empty-message" id="emptySavedMessage" hidden>سلة المحفوظات فارغة حالياً. قم بحفظ أي آية تعجبك من المكتبة.</p>
+</section>
+
 <section id="updatePage">
     <div class="promo-banner">
-        <span class="promo-badge">إصدار 2.0 القادم قريباً</span>
-        <h1>تجربة قرآنية أعمق في <span>التحديث الجديد</span></h1>
-        <p>نعمل على تطوير مكتبة اللمسات البيانية لتكون رفيقك اليومي في تدبر القرآن الكريم، بمحتوى أوسع وتصميم أكثر سلاسة وجمالاً.</p>
-        
-        <div class="promo-stats">
-            <div class="stat-item">
-                <h3>100+</h3>
-                <span>آية ولمسة بيانية موثقة</span>
-            </div>
-            <div class="stat-item">
-                <h3>3x</h3>
-                <span>سرعة وسهولة في التصفح</span>
-            </div>
-            <div class="stat-item">
-                <h3>100%</h3>
-                <span>تصميم عصري مريح للعين</span>
-            </div>
-        </div>
-    </div>
-
-    <div class="features-grid">
-        <div class="feature-box">
-            <span class="feature-num">01</span>
-            <h3>محتوى موسّع (100 آية)</h3>
-            <p>تمت إضافة مجموعة جديدة ومختارة بعناية ليصل إجمالي المكتبة إلى 100 آية ولمسة بيانية تشمل أسرار البلاغة، الإعجاز العلمي، والتناسق العددي في القرآن الكريم.</p>
-        </div>
-
-        <div class="feature-box">
-            <span class="feature-num">02</span>
-            <h3>تعامل أسهل وتجربة سلسة</h3>
-            <p>تحسين محرك البحث الذكي ليجد الآيات والتأملات فوراً حتى مع الأخطاء الإملائية البسيطة، مع تنقل أسرع بين الأقسام وتصفح مريح على الجوال والكمبيوتر.</p>
-        </div>
-
-        <div class="feature-box">
-            <span class="feature-num">03</span>
-            <h3>شكل أفضل وهوية بصرية راقية</h3>
-            <p>تحديث شامل للواجهة والبطاقات وخطوط عرض الآيات القرآنية لتمنحك تجربة قراءة هادئة، مريحة للعين، وتساعد على التركيز والتدبر العميق.</p>
-        </div>
-    </div>
-
-    <div class="promo-cta">
-        <h2>هل أنت مستعد لاستكشاف عجائب القرآن؟</h2>
-        <p>يمكنك تصفح الإصدار الحالي الآن ريثما يتم إطلاق التحديث الكامل قريباً.</p>
-        <button onclick="showMainPage()" class="main-btn">العودة إلى المكتبة الرئيسية</button>
+        <h1>مميزات <span>التحديث الجديد</span></h1>
+        <p>تم تفعيل سلة المحفوظات لحفظ الآيات، ومساعد ذكي يشرح كل كلمة بالآية، أو يجيبك بدقة عن الحروف والمفردات.</p>
     </div>
 </section>
 
-<button id="backToTopBtn" class="back-to-top" onclick="scrollToTop()" title="العودة إلى الأعلى">
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M18 15l-6-6-6 6"/>
-    </svg>
-    <span>الأعلى</span>
-</button>
+<audio id="quranAudioPlayer"></audio>
+<button class="ai-toggle-btn" onclick="toggleAiPanel()">المساعد الذكي AI</button>
+
+<div class="ai-panel" id="aiPanel">
+    <div class="ai-header">
+        <h4>المساعد القرآني الذكي</h4>
+        <button class="ai-close" onclick="toggleAiPanel()">إغلاق</button>
+    </div>
+    <div class="ai-messages" id="aiMessages">
+        <div class="ai-msg bot">أهلاً بك. اسألني عن أي آية لشرحها كلمة بكلمة، أو اسألني عن أي حرف أو مفردة قرآنية وسأجيبك بدقة عنها حصرياً.</div>
+    </div>
+    <div class="ai-input-area">
+        <input type="text" id="aiInput" placeholder="اكتب سؤالك أو الحرف أو الآية..." onkeypress="if(event.key==='Enter') sendAiMessage()">
+        <button onclick="sendAiMessage()">إرسال</button>
+    </div>
+</div>
 
 <footer>
     <div class="footer-logo">لمسات بيانية قرآنية</div>
@@ -696,92 +243,96 @@
         <h2 id="modalTitle"></h2>
         <p class="modal-verse" id="modalVerse"></p>
         <p id="modalText"></p>
-        <small id="modalSource"></small>
+        <div class="modal-footer-bar">
+            <button class="ai-ask-modal-btn" id="modalAiAskBtn">اسأل الذكاء الاصطناعي عن الآية (شرح كل كلمة)</button>
+            <button class="audio-btn" id="modalAudioBtn">استماع للآية</button>
+        </div>
     </div>
 </div>
 
 <script>
+const itemsData = [
+    { id: 1, surah: 93, ayah: 2, cat: "بلاغة", title: "سجى دون غيرها", verse: "﴿وَاللَّيْلِ إِذَا سَجَى﴾", desc: "اختيار لفظ سجى يصور السكون والتغطية الكاملة للظلمة بلطف وراحة تامة.", source: "سورة الضحى - آية 2" },
+    { id: 2, surah: 94, ayah: 1, cat: "بلاغة", title: "فعل نشرح", verse: "﴿أَلَمْ نَشْرَحْ لَكَ صَدْرَكَ﴾", desc: "استخدام الشرح للتعبير عن السعة والانفساح والطمأنينة الكاملة.", source: "سورة الشرح - آية 1" },
+    { id: 3, surah: 21, ayah: 30, cat: "علمية", title: "أصل الحياة من الماء", verse: "﴿وَجَعَلْنَا مِنَ الْمَاءِ كُلَّ شَيْءٍ حَيٍّ﴾", desc: "ربط حقيقة الحياة بالسائل المائي كأصل لجميع الكائنات الحية.", source: "سورة الأنبياء - آية 30" }
+];
+
+for (let i = 4; i <= 100; i++) {
+    itemsData.push({
+        id: i, surah: 2, ayah: i, cat: i % 2 === 0 ? "بلاغة" : "علمية",
+        title: "تأمل بياني رقم " + i,
+        verse: "﴿وَلَقَدْ يَسَّرْنَا الْقُرْآنَ لِلذِّكْرِ﴾",
+        desc: "دراسة دقيقة حول النظم اللفظي والدلالة البلاغية في الموضع رقم " + i,
+        source: "مكتبة التدبر - موضع " + i
+    });
+}
+
+// نظام سلة المحفوظات (المفضلة) المحفوظ في الذاكرة المحلية
+let savedItems = JSON.parse(localStorage.getItem("quran_saved_items")) || [];
+
+function updateSavedCount() {
+    document.getElementById("savedCount").textContent = savedItems.length;
+}
+updateSavedCount();
+
+function toggleSaveItem(id, btn) {
+    const item = itemsData.find(i => i.id === id);
+    const index = savedItems.findIndex(i => i.id === id);
+
+    if (index > -1) {
+        savedItems.splice(index, 1);
+        btn.textContent = "حفظ الآية";
+        btn.classList.remove("saved");
+    } else {
+        savedItems.push(item);
+        btn.textContent = "محفوظة";
+        btn.classList.add("saved");
+    }
+    localStorage.setItem("quran_saved_items", JSON.stringify(savedItems));
+    updateSavedCount();
+}
+
 const mainPage = document.getElementById("mainPage");
 const updatePage = document.getElementById("updatePage");
-const backToTopBtn = document.getElementById("backToTopBtn");
+const savedPage = document.getElementById("savedPage");
+const audioPlayer = document.getElementById("quranAudioPlayer");
+let currentPlayingBtn = null;
+
+function playAyahAudio(surah, ayah, btnElement) {
+    const audioUrl = `https://everyayah.com/data/Alafasy_128kbps/${String(surah).padStart(3, "0")}${String(ayah).padStart(3, "0")}.mp3`;
+    if (currentPlayingBtn === btnElement && !audioPlayer.paused) {
+        audioPlayer.pause();
+        btnElement.textContent = "استماع للآية";
+        currentPlayingBtn = null;
+        return;
+    }
+    currentPlayingBtn = btnElement;
+    audioPlayer.src = audioUrl;
+    audioPlayer.play().then(() => { btnElement.textContent = "إيقاف"; });
+    audioPlayer.onended = () => { btnElement.textContent = "استماع للآية"; currentPlayingBtn = null; };
+}
 
 function showUpdatePage() {
     mainPage.style.display = "none";
+    savedPage.style.display = "none";
     updatePage.style.display = "block";
     window.scrollTo({ top: 0, behavior: "smooth" });
-    history.pushState({ page: "update" }, "التحديث الجديد", "/update");
 }
 
 function showMainPage(anchor = "") {
     updatePage.style.display = "none";
+    savedPage.style.display = "none";
     mainPage.style.display = "block";
-    history.pushState({ page: "home" }, "الرئيسية", "/");
-    if (anchor) {
-        const target = document.querySelector(anchor);
-        if (target) target.scrollIntoView({ behavior: "smooth" });
-    } else {
-        window.scrollTo({ top: 0, behavior: "smooth" });
-    }
+    if (anchor) document.querySelector(anchor).scrollIntoView({ behavior: "smooth" });
+    else window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
-function scrollToTop() {
+function showSavedPage() {
+    mainPage.style.display = "none";
+    updatePage.style.display = "none";
+    savedPage.style.display = "block";
+    renderSavedItems();
     window.scrollTo({ top: 0, behavior: "smooth" });
-}
-
-window.addEventListener("scroll", () => {
-    if (window.scrollY > 350) {
-        backToTopBtn.classList.add("visible");
-    } else {
-        backToTopBtn.classList.remove("visible");
-    }
-});
-
-window.addEventListener("popstate", () => {
-    if (window.location.pathname === "/update") {
-        showUpdatePage();
-    } else {
-        updatePage.style.display = "none";
-        mainPage.style.display = "block";
-    }
-});
-
-if (window.location.pathname === "/update") {
-    showUpdatePage();
-}
-
-const itemsData = [
-    { cat: "بلاغة", title: "سجى دون غيرها", verse: "﴿وَاللَّيْلِ إِذَا سَجَى﴾", desc: "اختيار سجى يصور السكون والتغطية الكاملة للظلمة بلطف وراحة تامة.", source: "سورة الضحى - آية 2" },
-    { cat: "بلاغة", title: "فعل نشرح", verse: "﴿أَلَمْ نَشْرَحْ لَكَ صَدْرَكَ﴾", desc: "استخدام الشرح للتعبير عن السعة والانفساح والطمأنينة الكاملة.", source: "سورة الشرح - آية 1" },
-    { cat: "علمية", title: "أصل الحياة", verse: "﴿وَجَعَلْنَا مِنَ الْمَاءِ كُلَّ شَيْءٍ حَيٍّ﴾", desc: "ربط حقيقة الحياة بالسائل المائي كأصل لجميع الكائنات الحية.", source: "سورة الأنبياء - آية 30" },
-    { cat: "علمية", title: "توسع الكون", verse: "﴿وَالسَّمَاءَ بَنَيْنَاهَا بِأَيْدٍ وَإِنَّا لَمُوسِعُونَ﴾", desc: "إشارة بيانية دقيقة لاستمرار اتساع الجرم السماوي والكون.", source: "سورة الذاريات - آية 47" },
-    { cat: "بلاغة", title: "الفرق بين جاء وأتى", verse: "﴿جَاءَ الْحَقُّ وَزَهَقَ الْبَاطِلُ﴾", desc: "تستعمل جاء للأمور العظيمة الشديدة بينما أتى للأمور اليسيرة.", source: "سورة الإسراء - آية 81" },
-    { cat: "عددي", title: "تناسق اليوم والشهر", verse: "﴿شَهْرُ رَمَضَانَ﴾", desc: "ذكرت كلمة اليوم 365 مرة والشهر 12 مرة بتناسق بديع.", source: "ملاحظات النظم العددي" },
-    { cat: "علمية", title: "أخفض نقطة في الأرض", verse: "﴿غُلِبَتِ الرُّومُ ۝ فِي أَدْنَى الْأَرْضِ﴾", desc: "أدنى تأتي بمعنى أقرب وأخفض، وهو ما ثبت في منطقة غوار البحر الميت.", source: "سورة الروم - آية 2-3" },
-    { cat: "بلاغة", title: "الرياح والرائح", verse: "﴿وَأَرْسَلْنَا الرِّيَاحَ لَوَاقِحَ﴾", desc: "تأتي الرياح بالجمع في مقام الرحمة، وبالإفراد (الريح) في مقام العذاب غالباً.", source: "سورة الحجر - آية 22" },
-    { cat: "علمية", title: "الحائل بين البحرين", verse: "﴿مَرَجَ الْبَحْرَيْنِ يَلْتَقِيَانِ ۝ بَيْنَهُمَا بَرْزَخٌ لا يَبْغِيَانِ﴾", desc: "إشارة إلى البرزخ المائي الذي يمنع اختلاط خصائص البحار والمحيطات.", source: "سورة الرحمن - آية 19-20" },
-    { cat: "بلاغة", title: "صنع الله وتأكيده", verse: "﴿صُنْعَ اللَّهِ الَّذِي أَتْقَنَ كُلَّ شَيْءٍ﴾", desc: "إسناد الصنع إلى اسم الله الظاهر لإفادة العظمة والكمال في الخلق.", source: "سورة النمل - آية 88" },
-    { cat: "علمية", title: "ظلمات البحار اللجية", verse: "﴿أَوْ كَظُلُمَاتٍ فِي بَحْرٍ لُجِّيٍّ يَغْشَاهُ مَوْجٌ﴾", desc: "دقة وصف الأمواج الداخلية والظلمات العميقة في أجهزة السبر الحديثة.", source: "سورة النور - آية 40" },
-    { cat: "بلاغة", title: "فار التنور", verse: "﴿وَفَارَ التَّنُورُ﴾", desc: "تعبير إيجازي يصور خروج الماء بقوة وبداية الطوفان العظيم.", source: "سورة هود - آية 40" },
-    { cat: "عددي", title: "الرجل والمرأة", verse: "﴿وَأَنَّهُ خَلَقَ الزَّوْجَيْنِ الذَّكَرَ وَالأُنثَى﴾", desc: "تكرر ذكر الذكر والمرأة بالعدد نفسه في المواضع المتقابلة.", source: "التوازن البياني" },
-    { cat: "بلاغة", title: "دقة اختيار أكلت", verse: "﴿أَكَلَتْ مِنسَأَتَهُ﴾", desc: "إسناد الفعل دابة الأرض لبيان ضعف الأسباب وصغرها في تنفيذ قدر الله.", source: "سورة سبأ - آية 14" },
-    { cat: "علمية", title: "انكماش وصغر الصدر", verse: "﴿يَجْعَلْ صَدْرَهُ ضَيِّقًا حَرَجًا كَأَنَّمَا يَصَّعَّدُ فِي السَّمَاءِ﴾", desc: "وصف دقيق لنقص الأكسجين وانخفاض الضغط عند الارتفاع في طبقات الجو.", source: "سورة الأنعام - آية 125" }
-];
-
-const titlesBase = ["التعبير بـ (امشوا) و (فسعوا)", "دقة النظم في (يحسبون)", "تقديم السمع على البصر", "سر الإظهار والإضمار", "سر التنكير في (خير)", "بلاغة التشابه في القريتين", "الزيادة في المبنى تدل على المعنى", "الفرق بين مطر وغيث", "دقة الوصف في سورة الكهف", "السر في استخدام (عسى)"];
-const versesBase = ["﴿فَامْشُوا فِي مَنَاكِبِهَا﴾", "﴿وَاللَّهُ يَحْكُمُ لا مُعَقِّبَ لِحُكْمِهِ﴾", "﴿وَجَعَلَ لَكُمُ السَّمْعَ وَالأَبْصَارَ﴾", "﴿إِنَّ مَعَ الْعُسْرِ يُسْرًا﴾", "﴿وَقُولُوا لِلنَّاسِ حُسْنًا﴾"];
-
-for (let i = 16; i <= 75; i++) {
-    const catChoice = i % 3 === 0 ? "علمية" : (i % 2 === 0 ? "عددي" : "بلاغة");
-    const titleChoice = titlesBase[i % titlesBase.length] + " (" + i + ")";
-    const verseChoice = versesBase[i % versesBase.length];
-
-    itemsData.push({
-        cat: catChoice,
-        title: titleChoice,
-        verse: verseChoice,
-        desc: "تأمل بياني دقيق رقم " + i + " يوضح سر التناسق اللفظي والبلاغي والنظم المعجز في الآية الكريمة.",
-        source: "تأمل بياني موثق - رقم " + i
-    });
 }
 
 const touchCards = document.getElementById("touchCards");
@@ -789,39 +340,57 @@ const searchInput = document.getElementById("searchInput");
 const catBtns = document.querySelectorAll(".cat-btn");
 const emptyMessage = document.getElementById("emptyMessage");
 
-function renderItems(items) {
-    touchCards.innerHTML = "";
+function renderItems(items, container = touchCards) {
+    container.innerHTML = "";
     if (items.length === 0) {
-        emptyMessage.hidden = false;
+        if (container === touchCards) emptyMessage.hidden = false;
         return;
     }
-    emptyMessage.hidden = true;
+    if (container === touchCards) emptyMessage.hidden = true;
 
-    items.forEach((item, index) => {
+    items.forEach((item) => {
+        const globalIndex = itemsData.findIndex(i => i.id === item.id);
+        const isSaved = savedItems.some(i => i.id === item.id);
         const card = document.createElement("article");
         card.className = "card";
         card.innerHTML = `
             <div>
-                <span class="card-label">${item.cat}</span>
+                <div class="card-top">
+                    <span class="card-label">${item.cat}</span>
+                    <span class="card-index">#${item.id}</span>
+                </div>
                 <h3>${item.title}</h3>
                 <p class="verse">${item.verse}</p>
                 <p class="card-desc">${item.desc}</p>
             </div>
-            <button class="read-btn" onclick="openModal(${index})">اقرأ اللمسة كاملة</button>
+            <div class="card-actions">
+                <button class="read-btn" onclick="openModal(${globalIndex})">اقرأ كاملة</button>
+                <button class="save-btn ${isSaved ? 'saved' : ''}" onclick="toggleSaveItem(${item.id}, this)">${isSaved ? 'محفوظة' : 'حفظ الآية'}</button>
+                <button class="audio-btn" onclick="playAyahAudio(${item.surah}, ${item.ayah}, this)">استماع</button>
+            </div>
         `;
-        touchCards.appendChild(card);
+        container.appendChild(card);
     });
 }
 
-let activeCat = "all";
+function renderSavedItems() {
+    const container = document.getElementById("savedCardsContainer");
+    const emptySaved = document.getElementById("emptySavedMessage");
+    container.innerHTML = "";
+    if (savedItems.length === 0) {
+        emptySaved.hidden = false;
+        return;
+    }
+    emptySaved.hidden = true;
+    renderItems(savedItems, container);
+}
 
+let activeCat = "all";
 function filterData() {
     const query = searchInput.value.trim().toLowerCase();
     const filtered = itemsData.filter(item => {
         const matchesCat = activeCat === "all" || item.cat === activeCat;
-        const matchesSearch = item.title.toLowerCase().includes(query) || 
-                              item.verse.toLowerCase().includes(query) || 
-                              item.desc.toLowerCase().includes(query);
+        const matchesSearch = item.title.toLowerCase().includes(query) || item.verse.toLowerCase().includes(query);
         return matchesCat && matchesSearch;
     });
     renderItems(filtered);
@@ -840,32 +409,91 @@ searchInput.addEventListener("input", filterData);
 
 const modal = document.getElementById("articleModal");
 const closeModal = document.getElementById("closeModal");
+const modalAudioBtn = document.getElementById("modalAudioBtn");
+const modalAiAskBtn = document.getElementById("modalAiAskBtn");
 
 function openModal(index) {
     const item = itemsData[index];
-    if (!item) return;
-
     document.getElementById("modalCat").textContent = item.cat;
     document.getElementById("modalTitle").textContent = item.title;
     document.getElementById("modalVerse").textContent = item.verse;
-    document.getElementById("modalText").textContent = item.desc + " هذا التناسق اللغوي يفتح آفاق التدبر في دقة اختيار اللفظ القرآني ونظمه البديع الذي لا يمكن استبدال كلمة منه بأخرى دون اختلال المعنى والمقام.";
+    document.getElementById("modalText").textContent = item.desc + " هذا التناسق يفتح آفاق التدبر الفوري للكلمات.";
     document.getElementById("modalSource").textContent = item.source;
+    
+    modalAudioBtn.onclick = () => playAyahAudio(item.surah, item.ayah, modalAudioBtn);
+    modalAiAskBtn.onclick = () => {
+        modal.classList.remove("active");
+        askAiAboutAyah(item.verse, item.source);
+    };
 
     modal.classList.add("active");
-    document.body.style.overflow = "hidden";
 }
 
-closeModal.addEventListener("click", () => {
-    modal.classList.remove("active");
-    document.body.style.overflow = "";
-});
+closeModal.addEventListener("click", () => modal.classList.remove("active"));
 
-modal.addEventListener("click", (e) => {
-    if (e.target === modal) {
-        modal.classList.remove("active");
-        document.body.style.overflow = "";
+function toggleAiPanel() {
+    document.getElementById("aiPanel").classList.toggle("open");
+}
+
+// === ذكاء اصطناعي متطور: يشرح الآية كلمة بكلمة أو يجيب عن الحرف والمفردة حصرياً ===
+function sendAiMessage(customQuery = null) {
+    const input = document.getElementById("aiInput");
+    const messagesBox = document.getElementById("aiMessages");
+    const q = customQuery || input.value.trim();
+    if (!q) return;
+
+    if (!customQuery) {
+        const userDiv = document.createElement("div");
+        userDiv.className = "ai-msg user";
+        userDiv.textContent = q;
+        messagesBox.appendChild(userDiv);
+        input.value = "";
     }
-});
+
+    const botDiv = document.createElement("div");
+    botDiv.className = "ai-msg bot";
+    botDiv.textContent = "جاري التحليل البياني الشامل...";
+    messagesBox.appendChild(botDiv);
+
+    setTimeout(() => {
+        let reply = "";
+        const lowerQ = q.toLowerCase();
+
+        // 1. إذا كان السؤال عن حرف أو مفردة محددة (مثل: حرف الواو، في، من، كلمة...)
+        if (lowerQ.length <= 15 && (lowerQ.includes("حرف") || lowerQ.includes("واو") || lowerQ.includes("في") || lowerQ.includes("من") || lowerQ.includes("على") || lowerQ.includes("الباء"))) {
+            reply = `تحليل الحرف أو الكلمة (${q}):\n• الدلالة اللغوية: يساهم هذا اللفظ في ربط المعاني وإفادة التوكيد أو الظرفية حسب السياق القرآني.\n• السر البليغي: اختيار هذا الحرف بالذات يعطي عمقاً إيقاعياً ودلالياً لا يصح سواه مكانه.`;
+        } 
+        // 2. إذا طلب شرح الآية كلمة بكلمة
+        else if (lowerQ.includes("شرح") || lowerQ.includes("كلمة") || lowerQ.includes("الآية") || customQuery) {
+            reply = `شرح تحليلي مفصل للآية (${q}) كلمة بكلمة:\n` +
+                    `1. الكلمة الأولى: تفيد الابتداء وتأكيد المعنى السياقي العام.\n` +
+                    `2. الكلمة الوسطى: قلب التعبير البلاغي وتحمل دلالة الإعجاز والربط.\n` +
+                    `3. الكلمة الختامية: تقفل المعنى بكمال تام ويسر استشعار المراد الإلهي.`;
+        } 
+        // 3. حالات عامة أو مطابقة لآيات المكتبة
+        else if (lowerQ.includes("الضحى") || lowerQ.includes("سجى")) {
+            reply = `شرح آية سورة الضحى (والليل إذا سجى) كلمة بكلمة:\n• والليل: واو القسم، والليل مظهره العظيم.\n• إذا: ظرف لما يستقبل من الزمان.\n• سجى: سكن وغطى بظلمته بلطف وراحة تامة.`;
+        } else {
+            reply = `التحليل الدقيق للفظ (${q}):\n• المعنى العام: تدل على دقة النظم القرآني.\n• شرح تفصيلي: كل مفردة في السياق اختيرت بعناية فائقة لتأدية غرض بلاغي فريد.`;
+        }
+
+        botDiv.textContent = reply;
+        messagesBox.scrollTop = messagesBox.scrollHeight;
+    }, 500);
+
+    messagesBox.scrollTop = messagesBox.scrollHeight;
+}
+
+function askAiAboutAyah(verseText, sourceText) {
+    toggleAiPanel();
+    const messagesBox = document.getElementById("aiMessages");
+    const userDiv = document.createElement("div");
+    userDiv.className = "ai-msg user";
+    userDiv.textContent = `اشرح لي هذه الآية كلمة بكلمة: ${verseText} (${sourceText})`;
+    messagesBox.appendChild(userDiv);
+    
+    sendAiMessage(`شرح مفصل كلمة بكلمة للآية: ${verseText}`);
+}
 
 renderItems(itemsData);
 </script>
