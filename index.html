@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لمسات بيانية قرآنية - الإصدار الذكي المتقدم</title>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0d231a;
+            --text: #f1f5f2;
+            --card-bg: #133124;
+            --border: #1f4d38;
+            --gray: #a3b8ad;
+            --accent: #2d7a57;
+            --accent-hover: #369168;
+            --accent-text: #ffffff;
+            --shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Tajawal', sans-serif;
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        .header {
+            min-height: 75px;
+            padding: 12px 6%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(13, 35, 26, 0.96);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            gap: 12px;
+        }
+        .logo { font-size: 22px; font-weight: 800; text-decoration: none; color: var(--text); cursor: pointer; white-space: nowrap; }
+        .logo span { font-weight: 300; color: #79c7a5; }
+        
+        .nav { display: flex; align-items: center; gap: 16px; }
+        .nav a { text-decoration: none; color: var(--gray); font-size: 15px; cursor: pointer; transition: 0.3s; white-space: nowrap; }
+        .nav a:hover { color: var(--text); }
+
+        .saved-nav-btn {
+            background: rgba(45, 122, 87, 0.25);
+            color: #79c7a5 !important;
+            padding: 7px 14px;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 13px !important;
+            border: 1px solid #2d7a57;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .saved-nav-btn:hover { background: var(--accent); color: #ffffff !important; }
+
+        .hero { padding: 70px 6% 40px; text-align: center; }
+        .eyebrow { font-size: 13px; color: #79c7a5; letter-spacing: 1px; }
+        .hero h1 { font-size: clamp(26px, 5vw, 48px); margin: 15px 0; font-weight: 800; line-height: 1.3; }
+        .hero p { color: var(--gray); max-width: 650px; margin: 0 auto 30px; font-size: 16px; }
+
+        .main-btn {
+            display: inline-block;
+            background: var(--accent);
+            color: var(--accent-text);
+            padding: 12px 32px;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 6px;
+            border: 1px solid var(--accent);
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .main-btn:hover { background: var(--accent-hover); }
+
+        .section { padding: 40px 6%; }
+        .section-heading { margin-bottom: 25px; }
+        .section-number { font-size: 12px; color: #79c7a5; display: block; font-weight: 700; }
+        .section-heading h2 { font-size: clamp(22px, 4vw, 30px); margin-top: 5px; }
+
+        .search-box { margin-bottom: 20px; }
+        .search-box input {
+            width: 100%;
+            padding: 15px 18px;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            color: var(--text);
+            font-family: inherit;
+            font-size: 15px;
+            outline: none;
+            border-radius: 6px;
+        }
+        .search-box input:focus { border-color: #79c7a5; }
+
+        .categories { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 30px; }
+        .cat-btn {
+            padding: 8px 16px;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            color: var(--gray);
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 13px;
+            border-radius: 6px;
+            transition: 0.2s;
+        }
+        .cat-btn.active, .cat-btn:hover { background: var(--accent); color: var(--accent-text); border-color: var(--accent); }
+
+        .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(310px, 1fr)); gap: 22px; }
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            padding: 24px;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+        .card:hover { border-color: #2d7a57; }
+        .card-top { display: flex; justify-content: space-between; align-items: center; }
+        .card-label { font-size: 11px; color: #79c7a5; font-weight: 700; background: rgba(121, 199, 165, 0.1); padding: 2px 8px; border-radius: 4px; }
+        .card-index { font-size: 12px; color: var(--gray); }
+        .card h3 { font-size: 19px; margin: 12px 0 6px; }
+        .verse { font-family: 'Amiri', serif; font-size: 23px; line-height: 1.9; margin: 10px 0; color: #e2f0e8; }
+        .card-source { font-size: 12px; color: #79c7a5; margin-bottom: 8px; }
+        .card-desc { color: var(--gray); font-size: 14px; margin-bottom: 18px; }
+        
+        .card-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid var(--border);
+            padding-top: 14px;
+            gap: 8px;
+        }
+        .read-btn {
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid #79c7a5;
+            color: #79c7a5;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 13px;
+            font-weight: bold;
+            padding: 4px 0;
+        }
+        .save-btn {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--gray);
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s;
+            font-family: inherit;
+        }
+        .save-btn:hover, .save-btn.saved { background: var(--accent); color: #ffffff; border-color: #79c7a5; }
+
+        .audio-btn {
+            background: rgba(45, 122, 87, 0.25);
+            border: 1px solid #2d7a57;
+            color: #e2f0e8;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            font-family: inherit;
+        }
+        .audio-btn:hover, .audio-btn.playing { background: var(--accent); color: #ffffff; }
+
+        #savedPage { display: none; padding: 50px 6% 80px; }
+        .empty-message { text-align: center; color: var(--gray); padding: 40px 20px; font-size: 16px; }
+
+        /* زر الطلوع للأعلى */
+        .scroll-top-btn {
+            position: fixed;
+            bottom: 24px;
+            left: 24px;
+            width: 46px;
+            height: 46px;
+            background: linear-gradient(135deg, #2d7a57, #1b4734);
+            color: #ffffff;
+            border: 1px solid #79c7a5;
+            border-radius: 50%;
+            font-size: 20px;
+            font-weight: 800;
+            cursor: pointer;
+            z-index: 160;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.45);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(15px);
+            transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease, background 0.2s ease;
+        }
+        .scroll-top-btn.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        .scroll-top-btn:hover {
+            background: var(--accent-hover);
+            transform: translateY(-3px);
+        }
+
+        /* زر ولوحة المساعد الذكي */
+        .ai-toggle-btn {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background: linear-gradient(135deg, #1b4734, #133124);
+            color: #ffffff;
+            border: 1px solid #79c7a5;
+            padding: 12px 20px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-family: inherit;
+            font-size: 14px;
+            cursor: pointer;
+            z-index: 160;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.45);
+        }
+
+        .ai-panel {
+            position: fixed;
+            bottom: 82px;
+            right: 24px;
+            width: 390px;
+            max-width: calc(100vw - 32px);
+            height: 500px;
+            max-height: 75vh;
+            background: #133124;
+            border: 1px solid #79c7a5;
+            border-radius: 10px;
+            display: none;
+            flex-direction: column;
+            z-index: 170;
+            box-shadow: 0 12px 35px rgba(0,0,0,0.6);
+            overflow: hidden;
+        }
+        .ai-panel.open { display: flex; }
+
+        .ai-header {
+            background: #0d231a;
+            padding: 14px 16px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .ai-header h4 { font-size: 15px; color: #79c7a5; }
+        .ai-close {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--gray);
+            padding: 4px 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-family: inherit;
+        }
+
+        .ai-messages {
+            flex: 1;
+            padding: 14px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .ai-msg {
+            padding: 11px 14px;
+            border-radius: 8px;
+            font-size: 14px;
+            line-height: 1.7;
+            max-width: 92%;
+            word-wrap: break-word;
+        }
+        .ai-msg.bot { background: #0d231a; border: 1px solid var(--border); align-self: flex-start; white-space: pre-line; }
+        .ai-msg.user { background: var(--accent); color: #ffffff; align-self: flex-end; }
+
+        .ai-input-area {
+            padding: 10px;
+            background: #0d231a;
+            border-top: 1px solid var(--border);
+            display: flex;
+            gap: 8px;
+        }
+        .ai-input-area input {
+            flex: 1;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            color: var(--text);
+            padding: 10px 12px;
+            border-radius: 6px;
+            outline: none;
+            font-family: inherit;
+            font-size: 14px;
+            min-width: 0;
+        }
+        .ai-input-area button {
+            background: var(--accent);
+            color: #ffffff;
+            border: none;
+            padding: 0 16px;
+            border-radius: 6px;
+            font-weight: 700;
+            cursor: pointer;
+            font-family: inherit;
+        }
+
+        footer { padding: 40px 6%; text-align: center; border-top: 1px solid var(--border); margin-top: 50px; background: var(--card-bg); }
+        .footer-logo { font-weight: 800; font-size: 18px; margin-bottom: 6px; }
+        footer p { color: var(--gray); font-size: 13px; }
+
+        .modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.8);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            padding: 16px;
+            z-index: 200;
+        }
+        .modal.active { display: flex; }
+        .modal-content {
+            background: #133124;
+            border: 1px solid #2d7a57;
+            width: 100%;
+            max-width: 650px;
+            max-height: 88vh;
+            overflow-y: auto;
+            padding: 28px;
+            border-radius: 10px;
+            position: relative;
+        }
+        .modal-top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+        .close-modal {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text);
+            padding: 6px 14px;
+            cursor: pointer;
+            border-radius: 6px;
+            font-family: inherit;
+        }
+        .modal-verse { font-family: 'Amiri', serif; font-size: 25px; margin: 16px 0; line-height: 2; color: #e2f0e8; }
+        .modal-source { font-size: 13px; color: #79c7a5; margin-top: 12px; font-weight: 700; }
+        
+        .modal-footer-bar {
+            margin-top: 22px;
+            padding-top: 16px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .ai-ask-modal-btn {
+            background: linear-gradient(135deg, #2d7a57, #1f5c40);
+            color: #ffffff;
+            border: 1px solid #79c7a5;
+            padding: 10px 16px;
+            border-radius: 6px;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 13px;
+            font-family: inherit;
+        }
+        .ai-ask-modal-btn:hover { background: #369168; }
+
+        /* ================= تحسينات الجوال (Responsive Mobile) ================= */
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                padding: 12px 4%;
+                gap: 10px;
+            }
+            .logo { font-size: 20px; }
+            .nav {
+                width: 100%;
+                justify-content: center;
+                gap: 12px;
+                flex-wrap: wrap;
+            }
+            .nav a { font-size: 14px; }
+            .saved-nav-btn { padding: 5px 10px; font-size: 12px !important; }
+
+            .hero { padding: 45px 4% 30px; }
+            .hero p { font-size: 15px; }
+            .main-btn { width: 100%; max-width: 300px; padding: 12px 20px; }
+
+            .section, #savedPage { padding: 30px 4%; }
+            
+            .categories {
+                flex-wrap: nowrap;
+                overflow-x: auto;
+                padding-bottom: 8px;
+                -webkit-overflow-scrolling: touch;
+            }
+            .cat-btn { white-space: nowrap; flex-shrink: 0; }
+
+            .cards { grid-template-columns: 1fr; gap: 16px; }
+            .card { padding: 18px; }
+            .verse { font-size: 21px; }
+            .card-actions { flex-wrap: wrap; }
+            .card-actions button { flex: 1; text-align: center; }
+            .read-btn { border: 1px solid #79c7a5; border-radius: 6px; padding: 6px 10px; }
+
+            .scroll-top-btn {
+                bottom: 16px;
+                left: 16px;
+                width: 42px;
+                height: 42px;
+                font-size: 18px;
+            }
+
+            .ai-toggle-btn {
+                bottom: 16px;
+                right: 16px;
+                padding: 10px 16px;
+                font-size: 13px;
+            }
+            .ai-panel {
+                right: 12px;
+                left: 12px;
+                bottom: 70px;
+                width: auto;
+                max-width: none;
+                height: 68vh;
+            }
+
+            .modal-content { padding: 20px; }
+            .modal-verse { font-size: 21px; }
+            .modal-footer-bar { flex-direction: column; align-items: stretch; }
+            .ai-ask-modal-btn, .modal-footer-bar .audio-btn { width: 100%; text-align: center; padding: 10px; }
+        }
+    </style>
+</head>
+<body>
+
+<header class="header">
+    <a onclick="showMainPage()" class="logo">لمسات <span>بيانية</span></a>
+    <nav class="nav">
+        <a onclick="showMainPage('#home')">الرئيسية</a>
+        <a onclick="showMainPage('#library')">المكتبة</a>
+        <a onclick="showSavedPage()" class="saved-nav-btn">سلة المحفوظات (<span id="savedCount">0</span>)</a>
+    </nav>
+</header>
+
+<main id="mainPage">
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <span class="eyebrow">مكتبة عجائب القرآن - الإصدار الذكي</span>
+            <h1>مكتبة اللمسات البيانية والمعجزات القرآنية</h1>
+            <p>تأملات دقيقة في بلاغة اللفظ القرآني مع تلاوة صوتية، سلة محفوظات، ومساعد ذكي يحلل الآيات والكلمات بدقة.</p>
+            <a href="#library" class="main-btn">تصفح المكتبة (100 آية)</a>
+        </div>
+    </section>
+
+    <section class="section" id="library">
+        <div class="section-heading">
+            <span class="section-number">01 / المكتبة الشاملة</span>
+            <h2>عجائب ولمسات بيانية (100 آية قرآنية)</h2>
+        </div>
+
+        <div class="search-box">
+            <input type="search" id="searchInput" placeholder="ابحث باسم السورة، الآية، أو اللمسة البيانية...">
+        </div>
+
+        <div class="categories" id="categoryFilter">
+            <button class="cat-btn active" data-cat="all">الكل (100)</button>
+            <button class="cat-btn" data-cat="بلاغة">بلاغة ودقة لفظية</button>
+            <button class="cat-btn" data-cat="علمية">معجزات علمية وتأملات</button>
+            <button class="cat-btn" data-cat="عددي">تناسق ونظم</button>
+        </div>
+
+        <div class="cards" id="touchCards"></div>
+        <p class="empty-message" id="emptyMessage" hidden>لم نعثر على نتائج مطابقة لبحثك.</p>
+    </section>
+</main>
+
+<!-- صفحة سلة المحفوظات -->
+<section id="savedPage">
+    <div class="section-heading">
+        <span class="section-number">المفضلة</span>
+        <h2>سلة المحفوظات والآيات المحفوظة</h2>
+    </div>
+    <div class="cards" id="savedCardsContainer"></div>
+    <p class="empty-message" id="emptySavedMessage" hidden>سلة المحفوظات فارغة حالياً. قم بحفظ أي آية تعجبك من المكتبة.</p>
+</section>
+
+<audio id="quranAudioPlayer"></audio>
+
+<!-- زر الطلوع للأعلى -->
+<button class="scroll-top-btn" id="scrollTopBtn" onclick="scrollToTop()" title="العودة للأعلى" aria-label="العودة للأعلى">↑</button>
+
+<button class="ai-toggle-btn" onclick="toggleAiPanel()">المساعد الذكي AI</button>
+
+<div class="ai-panel" id="aiPanel">
+    <div class="ai-header">
+        <h4>المساعد القرآني الذكي</h4>
+        <button class="ai-close" onclick="toggleAiPanel()">إغلاق</button>
+    </div>
+    <div class="ai-messages" id="aiMessages">
+        <div class="ai-msg bot">أهلاً بك. اكتب أي آية أو كلمة من المكتبة لأشرحها لك، أو اسألني عن أي آية وسأتحقق من وجودها وأحللها لك بدقة.</div>
+    </div>
+    <div class="ai-input-area">
+        <input type="text" id="aiInput" placeholder="اكتب الآية أو الكلمة أو سؤالك..." onkeypress="if(event.key==='Enter') sendAiMessage()">
+        <button onclick="sendAiMessage()">إرسال</button>
+    </div>
+</div>
+
+<footer>
+    <div class="footer-logo">لمسات بيانية قرآنية</div>
+    <p>مكتبة عجائب القرآن الكريم - 100 موضع للتدبر</p>
+</footer>
+
+<div class="modal" id="articleModal">
+    <div class="modal-content">
+        <div class="modal-top-bar">
+            <span class="section-number" id="modalCat"></span>
+            <button class="close-modal" id="closeModal">إغلاق</button>
+        </div>
+        <h2 id="modalTitle"></h2>
+        <p class="modal-verse" id="modalVerse"></p>
+        <p id="modalText"></p>
+        <p class="modal-source" id="modalSource"></p>
+        <div class="modal-footer-bar">
+            <button class="ai-ask-modal-btn" id="modalAiAskBtn">اسأل الذكاء الاصطناعي عن الآية (شرح كل كلمة)</button>
+            <button class="audio-btn" id="modalAudioBtn">استماع للآية</button>
+        </div>
+    </div>
+</div>
+
+<script>
+// 100 آية قرآنية حقيقية وغير مكررة مع أرقام السور والآيات الصحيحة للتلاوة
+const itemsData = [
+    { id: 1, surah: 93, ayah: 2, cat: "بلاغة", title: "سجى دون غيرها", verse: "﴿وَاللَّيْلِ إِذَا سَجَى﴾", desc: "اختيار لفظ سجى يصور السكون والتغطية الكاملة للظلمة بلطف وراحة تامة.", source: "سورة الضحى - آية 2" },
+    { id: 2, surah: 94, ayah: 1, cat: "بلاغة", title: "فعل نشرح", verse: "﴿أَلَمْ نَشْرَحْ لَكَ صَدْرَكَ﴾", desc: "استخدام الشرح للتعبير عن السعة والانفساح والطمأنينة الكاملة.", source: "سورة الشرح - آية 1" },
+    { id: 3, surah: 21, ayah: 30, cat: "علمية", title: "أصل الحياة من الماء", verse: "﴿وَجَعَلْنَا مِنَ الْمَاءِ كُلَّ شَيْءٍ حَيٍّ﴾", desc: "ربط حقيقة الحياة بالسائل المائي كأصل لجميع الكائنات الحية.", source: "سورة الأنبياء - آية 30" },
+    { id: 4, surah: 1, ayah: 2, cat: "بلاغة", title: "الجملة الاسمية في الحمد", verse: "﴿الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ﴾", desc: "التعبير بالجملة الاسمية يفيد الثبات والدوام والاستمرار في حمد الله.", source: "سورة الفاتحة - آية 2" },
+    { id: 5, surah: 1, ayah: 5, cat: "عددي", title: "تقديم المفعول للحصر", verse: "﴿إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ﴾", desc: "تقديم الضمير (إياك) يفيد قصر العبادة والاستعانة على الله وحده.", source: "سورة الفاتحة - آية 5" },
+    { id: 6, surah: 2, ayah: 2, cat: "بلاغة", title: "ذلك الكتاب للعلو", verse: "﴿ذَٰلِكَ الْكِتَابُ لَا رَيْبَ فِيهِ﴾", desc: "استخدام اسم الإشارة للبعيد (ذلك) للدلالة على علو شأن القرآن ورفعته.", source: "سورة البقرة - آية 2" },
+    { id: 7, surah: 2, ayah: 186, cat: "عددي", title: "حذف الواسطة في الدعاء", verse: "﴿وَإِذَا سَأَلَكَ عِبَادِي عَنِّي فَإِنِّي قَرِيبٌ﴾", desc: "لم يقل (فقل إني قريب) بل أجاب مباشرة للدلالة على القرب الشديد بين العبد وربه.", source: "سورة البقرة - آية 186" },
+    { id: 8, surah: 2, ayah: 255, cat: "بلاغة", title: "الحي القيوم", verse: "﴿اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ﴾", desc: "جمع بين كمال الحياة الذاتية وكمال القيام بتدبير شؤون الخلق.", source: "سورة البقرة - آية 255" },
+    { id: 9, surah: 2, ayah: 286, cat: "بلاغة", title: "الفرق بين لها وعليها", verse: "﴿لَهَا مَا كَسَبَتْ وَعَلَيْهَا مَا اكْتَسَبَتْ﴾", desc: "في الخير قال (كسبت) لسهولته، وفي الشر قال (اكتسبت) بزيادة التاء للدلالة على تكلف المعصية.", source: "سورة البقرة - آية 286" },
+    { id: 10, surah: 3, ayah: 26, cat: "عددي", title: "تؤتي وتنزع", verse: "﴿تُؤْتِي الْمُلْكَ مَن تَشَاءُ وَتَنزِعُ الْمُلْكَ مِمَّن تَشَاءُ﴾", desc: "في العطاء قال (تؤتي) بلطف، وفي السلب قال (تنزع) لأن الملك لا يُترك إلا بانتزاع.", source: "سورة آل عمران - آية 26" },
+    { id: 11, surah: 3, ayah: 133, cat: "بلاغة", title: "عرض السماوات والأرض", verse: "﴿وَجَنَّةٍ عَرْضُهَا السَّمَاوَاتُ وَالْأَرْضُ﴾", desc: "وصف العرض فقط ليدل على أن طولها يفوق كل تصور بشري.", source: "سورة آل عمران - آية 133" },
+    { id: 12, surah: 4, ayah: 40, cat: "بلاغة", title: "مثقال ذرة", verse: "﴿إِنَّ اللَّهَ لَا يَظْلِمُ مِثْقَالَ ذَرَّةٍ﴾", desc: "استخدام أصغر ما يُرى ويُوزن لتأكيد العدل الإلهي المطلق.", source: "سورة النساء - آية 40" },
+    { id: 13, surah: 5, ayah: 3, cat: "عددي", title: "تمام النعمة وكمال الدين", verse: "﴿الْيَوْمَ أَكْمَلْتُ لَكُمْ دِينَكُمْ وَأَتْمَمْتُ عَلَيْكُمْ نِعْمَتِي﴾", desc: "الدين يُكمل فلا يحتاج زيادة، والنعمة تُتم لتشمل الدنيا والآخرة.", source: "سورة المائدة - آية 3" },
+    { id: 14, surah: 6, ayah: 59, cat: "علمية", title: "مفاتح الغيب", verse: "﴿وَعِندَهُ مَفَاتِحُ الْغَيْبِ لَا يَعْلَمُهَا إِلَّا هُوَ﴾", desc: "إحاطة العلم الإلهي بكل ورقة تسقط وبكل حبة في ظلمات الأرض.", source: "سورة الأنعام - آية 59" },
+    { id: 15, surah: 6, ayah: 125, cat: "علمية", title: "ضيق الصدر في السماء", verse: "﴿يَجْعَلْ صَدْرَهُ ضَيِّقًا حَرَجًا كَأَنَّمَا يَصَّعَّدُ فِي السَّمَاءِ﴾", desc: "إشارة علمية دقيقة لنقص الأكسجين وانخفاض الضغط الجوي كلما ارتفع الإنسان.", source: "سورة الأنعام - آية 125" },
+    { id: 16, surah: 7, ayah: 31, cat: "علمية", title: "قاعدة الاعتدال الغذائي", verse: "﴿وَكُلُوا وَاشْرَبُوا وَلَا تُسْرِفُوا﴾", desc: "تجمع قواعد الطب الوقائي وحفظ الصحة في ثلاث كلمات محكمة.", source: "سورة الأعراف - آية 31" },
+    { id: 17, surah: 7, ayah: 54, cat: "علمية", title: "إغشاء الليل للنهار", verse: "﴿يُغْشِي اللَّيْلَ النَّهَارَ يَطْلُبُهُ حَثِيثًا﴾", desc: "تصوير حركي مذهل لتعاقب الليل والنهار المستمر حول كروية الأرض.", source: "سورة الأعراف - آية 54" },
+    { id: 18, surah: 8, ayah: 17, cat: "بلاغة", title: "نفي وإثبات الرمي", verse: "﴿وَمَا رَمَيْتَ إِذْ رَمَيْتَ وَلَٰكِنَّ اللَّهَ رَمَىٰ﴾", desc: "إثبات الفعل الظاهر للبشر ونفي الأثر الحقيقي إلا بتوفيق الله.", source: "سورة الأنفال - آية 17" },
+    { id: 19, surah: 9, ayah: 40, cat: "عددي", title: "لا تحزن إن الله معنا", verse: "﴿إِذْ يَقُولُ لِصَاحِبِهِ لَا تَحْزَنْ إِنَّ اللَّهَ مَعَنَا﴾", desc: "إثبات شرف الصحبة وتثبيت القلب بالمعية الإلهية الخاصة.", source: "سورة التوبة - آية 40" },
+    { id: 20, surah: 10, ayah: 5, cat: "علمية", title: "الفرق بين الضياء والنور", verse: "﴿هُوَ الَّذِي جَعَلَ الشَّمْسَ ضِيَاءً وَالْقَمَرَ نُورًا﴾", desc: "الشمس مصدر ذاتي للحرارة والضوء (ضياء)، والقمر عاكس للضوء فقط (نور).", source: "سورة يونس - آية 5" },
+    { id: 21, surah: 11, ayah: 44, cat: "بلاغة", title: "قمة الإيجاز البلاغي", verse: "﴿وَقِيلَ يَا أَرْضُ ابْلَعِي مَاءَكِ وَيَا سَمَاءُ أَقْلِعِي﴾", desc: "آية جمعت 22 لوناً من ألوان البديع والبلاغة في بضع كلمات.", source: "سورة هود - آية 44" },
+    { id: 22, surah: 12, ayah: 4, cat: "عددي", title: "أحد عشر كوكباً", verse: "﴿إِنِّي رَأَيْتُ أَحَدَ عَشَرَ كَوْكَبًا وَالشَّمْسَ وَالْقَمَرَ﴾", desc: "تناسق الرؤيا الرمزية مع عدد إخوة يوسف وأبويه.", source: "سورة يوسف - آية 4" },
+    { id: 23, surah: 12, ayah: 87, cat: "بلاغة", title: "التحسس والبحث بلطف", verse: "﴿يَا بَنِيَّ اذْهَبُوا فَتَحَسَّسُوا مِن يُوسُفَ وَأَخِيهِ﴾", desc: "التحسس بالحاء للبحث في الخير والرحمة، بخلاف التجسس بالجيم.", source: "سورة يوسف - آية 87" },
+    { id: 24, surah: 13, ayah: 28, cat: "بلاغة", title: "طمأنينة القلوب", verse: "﴿أَلَا بِذِكْرِ اللَّهِ تَطْمَئِنُّ الْقُلُوبُ﴾", desc: "أداة التنبيه (ألا) مع الباء للسببية تحصر السكينة الحقيقية في ذكر الله.", source: "سورة الرعد - آية 28" },
+    { id: 25, surah: 14, ayah: 7, cat: "عددي", title: "قاعدة الزيادة بالشكر", verse: "﴿لَئِن شَكَرْتُمْ لَأَزِيدَنَّكُمْ﴾", desc: "تأكيد مزدوج باللام والنون على أن الشكر سبب حتمي للزيادة.", source: "سورة إبراهيم - آية 7" },
+    { id: 26, surah: 15, ayah: 9, cat: "عددي", title: "حفظ الذكر", verse: "﴿إِنَّا نَحْنُ نَزَّلْنَا الذِّكْرَ وَإِنَّا لَهُ لَحَافِظُونَ﴾", desc: "توكيد بـ (إن) وضمير العظمة (نحن) والجملة الاسمية لضمان حفظ القرآن.", source: "سورة الحجر - آية 9" },
+    { id: 27, surah: 15, ayah: 22, cat: "علمية", title: "الرياح اللواقح", verse: "﴿وَأَرْسَلْنَا الرِّيَاحَ لَوَاقِحَ﴾", desc: "إشارة لدور الرياح في تلقيح النباتات وتلقيح السحب لتكوين المطر.", source: "سورة الحجر - آية 22" },
+    { id: 28, surah: 16, ayah: 68, cat: "علمية", title: "تأنيث الفعل للنحل", verse: "﴿وَأَوْحَىٰ رَبُّكَ إِلَى النَّحْلِ أَنِ اتَّخِذِي مِنَ الْجِبَالِ بُيُوتًا﴾", desc: "جاء الأمر بصيغة المؤنث (اتخذي) لأن إناث النحل (الشغالات) هي التي تبني وتجمع العسل.", source: "سورة النحل - آية 68" },
+    { id: 29, surah: 16, ayah: 69, cat: "علمية", title: "بطون النحل", verse: "﴿يَخْرُجُ مِن بُطُونِهَا شَرَابٌ مُّخْتَلِفٌ أَلْوَانُهُ فِيهِ شِفَاءٌ لِّلنَّاسِ﴾", desc: "إثبات خروج العسل من بطون إناث النحل وخصائصه العلاجية الفريدة.", source: "سورة النحل - آية 69" },
+    { id: 30, surah: 17, ayah: 1, cat: "بلاغة", title: "أسرى بعبده", verse: "﴿سُبْحَانَ الَّذِي أَسْرَىٰ بِعَبْدِهِ لَيْلًا﴾", desc: "وصف النبي بالعبودية في أعظم مقام تكريم لبيان أن العبودية لله أعلى المراتب.", source: "سورة الإسراء - آية 1" },
+    { id: 31, surah: 17, ayah: 23, cat: "بلاغة", title: "ولا تقل لهما أف", verse: "﴿فَلَا تَقُل لَّهُمَا أُفٍّ وَلَا تَنْهَرْهُمَا﴾", desc: "النهي عن أدنى صوت تضجر ليشمل تحريم كل ما هو أكبر منه من باب أولى.", source: "سورة الإسراء - آية 23" },
+    { id: 32, surah: 18, ayah: 18, cat: "علمية", title: "تقليب أصحاب الكهف", verse: "﴿وَنُقَلِّبُهُمْ ذَاتَ الْيَمِينِ وَذَاتَ الشِّمَالِ﴾", desc: "التقليب المستمر أثناء النوم الطويل لحماية أجسادهم من تقرحات الفراش.", source: "سورة الكهف - آية 18" },
+    { id: 33, surah: 18, ayah: 49, cat: "عددي", title: "صغيرة ولا كبيرة", verse: "﴿لَا يُغَادِرُ صَغِيرَةً وَلَا كَبِيرَةً إِلَّا أَحْصَاهَا﴾", desc: "تقديم الصغيرة لأن النفوس تخاف من إحصاء الصغائر التي تنساها ولا تلقي لها بالاً.", source: "سورة الكهف - آية 49" },
+    { id: 34, surah: 19, ayah: 4, cat: "بلاغة", title: "اشتعل الرأس شيباً", verse: "﴿وَاشْتَعَلَ الرَّأْسُ شَيْبًا﴾", desc: "استعارة مكنية بديعة تشبه انتشار الشيب في الشعر بانتشار النار في الهشيم.", source: "سورة مريم - آية 4" },
+    { id: 35, surah: 20, ayah: 25, cat: "بلاغة", title: "دعاء موسى بالانشراح", verse: "﴿قَالَ رَبِّ اشْرَحْ لِي صَدْرِي﴾", desc: "بدأ بطلب سعة الصدر قبل تيسير الأمر لأن راحة القلب أساس النجاح.", source: "سورة طه - آية 25" },
+    { id: 36, surah: 21, ayah: 33, cat: "علمية", title: "سباحة الأجرام في الفلك", verse: "﴿وَكُلٌّ فِي فَلَكٍ يَسْبَحُونَ﴾", desc: "وصف حركة الشمس والقمر والكواكب بالسباحة الدقيقة في مدارات محددة.", source: "سورة الأنبياء - آية 33" },
+    { id: 37, surah: 21, ayah: 87, cat: "عددي", title: "نداء ذي النون في الظلمات", verse: "﴿لَّا إِلَٰهَ إِلَّا أَنتَ سُبْحَانَكَ إِنِّي كُنتُ مِنَ الظَّالِمِينَ﴾", desc: "جمع بين التوحيد والتنزيه والاعتراف بالتقصير فكان مفتاح الفرج.", source: "سورة الأنبياء - آية 87" },
+    { id: 38, surah: 22, ayah: 5, cat: "علمية", title: "اهتزاز الأرض وربوها", verse: "﴿فَإِذَا أَنزَلْنَا عَلَيْهَا الْمَاءَ اهْتَزَّتْ وَرَبَتْ﴾", desc: "وصف دقيق لحبيبات التربة عند تشرب الماء حيث تهتز وتنتفخ لتسمح بنمو البذور.", source: "سورة الحج - آية 5" },
+    { id: 39, surah: 23, ayah: 14, cat: "علمية", title: "أطوار خلق الجنين", verse: "﴿فَخَلَقْنَا الْمُضْغَةَ عِظَامًا فَكَسَوْنَا الْعِظَامَ لَحْمًا﴾", desc: "ترتيب علمي مذهل يطابق علم الأجنة الحديث في تكوّن الغضاريف والعظام ثم العضلات.", source: "سورة المؤمنون - آية 14" },
+    { id: 40, surah: 24, ayah: 35, cat: "بلاغة", title: "آية النور", verse: "﴿اللَّهُ نُورُ السَّمَاوَاتِ وَالْأَرْضِ﴾", desc: "تشبيه تمثيلي عميق لنور الهداية في قلب المؤمن بالمصباح الصافي.", source: "سورة النور - آية 35" },
+    { id: 41, surah: 24, ayah: 40, cat: "علمية", title: "ظلمات البحار العميقة", verse: "﴿أَوْ كَظُلُمَاتٍ فِي بَحْرٍ لُّجِّيٍّ يَغْشَاهُ مَوْجٌ مِّن فَوْقِهِ مَوْجٌ﴾", desc: "إشارة للأمواج الداخلية في أعماق البحار والظلام الدامس تحت عمق 200 متر.", source: "سورة النور - آية 40" },
+    { id: 42, surah: 25, ayah: 53, cat: "علمية", title: "البرزخ بين البحرين", verse: "﴿وَجَعَلَ بَيْنَهُمَا بَرْزَخًا وَحِجْرًا مَّحْجُورًا﴾", desc: "حاجز مائي غير مرئي يمنع طغيان الماء المالح على العذب مع احتفاظ كل منهما بخصائصه.", source: "سورة الفرقان - آية 53" },
+    { id: 43, surah: 26, ayah: 80, cat: "بلاغة", title: "أدب إبراهيم مع الله", verse: "﴿وَإِذَا مَرِضْتُ فَهُوَ يَشْفِينِ﴾", desc: "نسب المرض إلى نفسه أدباً مع الله، ونسب الشفاء إلى الله وحده.", source: "سورة الشعراء - آية 80" },
+    { id: 44, surah: 27, ayah: 18, cat: "علمية", title: "تحطيم النمل", verse: "﴿لَا يَحْطِمَنَّكُمْ سُلَيْمَانُ وَجُنُودُهُ﴾", desc: "اختيار فعل (يحطمنكم) لأن الهيكل الخارجي للنملة يحتوي على مادة الكيتين الصلبة القابلة للتحطم.", source: "سورة النمل - آية 18" },
+    { id: 45, surah: 27, ayah: 88, cat: "علمية", title: "حركة الجبال كالسحاب", verse: "﴿وَتَرَى الْجِبَالَ تَحْسَبُهَا جَامِدَةً وَهِيَ تَمُرُّ مَرَّ السَّحَابِ﴾", desc: "إشارة لدوران الأرض حول نفسها وحركتها في الفضاء بالجبال التي تبدو للعين ثابتة.", source: "سورة النمل - آية 88" },
+    { id: 46, surah: 28, ayah: 7, cat: "عددي", title: "أمران ونهيان وبشارتان", verse: "﴿أَنْ أَرْضِعِيهِ فَإِذَا خِفْتِ عَلَيْهِ فَأَلْقِيهِ فِي الْيَمِّ وَلَا تَخَافِي وَلَا تَحْزَنِي﴾", desc: "آية واحدة جمعت أمرين ونهيين وخبرين وبشارتين في قمة الإعجاز البياني.", source: "سورة القصص - آية 7" },
+    { id: 47, surah: 29, ayah: 41, cat: "علمية", title: "وهن بيت العنكبوت", verse: "﴿وَإِنَّ أَوْهَنَ الْبُيُوتِ لَبَيْتُ الْعَنكَبُوتِ﴾", desc: "التأنيث في (اتخذت) لأن الأنثى هي التي تبني البيت، وهو أوهن البيوت مادياً وأسرياً.", source: "سورة العنكبوت - آية 41" },
+    { id: 48, surah: 30, ayah: 2, cat: "علمية", title: "أدنى الأرض", verse: "﴿غُلِبَتِ الرُّومُ فِي أَدْنَى الْأَرْضِ﴾", desc: "أثبت العلم الحديث أن منطقة البحر الميت التي وقعت فيها المعركة هي أخفض بقعة على اليابسة.", source: "سورة الروم - آية 2-3" },
+    { id: 49, surah: 30, ayah: 21, cat: "بلاغة", title: "المودة والرحمة", verse: "﴿وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً﴾", desc: "المودة في الشباب والقوة، والرحمة عند الكبر والضعف لتستمر الحياة الزوجية.", source: "سورة الروم - آية 21" },
+    { id: 50, surah: 31, ayah: 19, cat: "بلاغة", title: "اقصد في مشيك", verse: "﴿وَاقْصِدْ فِي مَشْيِكَ وَاغْضُضْ مِن صَوْتِكَ﴾", desc: "التوسط في المشي وخفض الصوت عنوان الوقار والأدب الرفيع.", source: "سورة لقمان - آية 19" },
+    { id: 51, surah: 32, ayah: 5, cat: "عددي", title: "نسبية الزمن", verse: "﴿فِي يَوْمٍ كَانَ مِقْدَارُهُ أَلْفَ سَنَةٍ مِّمَّا تَعُدُّونَ﴾", desc: "إشارة لاختلاف مقاييس الزمن في الكون عن حسابات البشر الأرضية.", source: "سورة السجدة - آية 5" },
+    { id: 52, surah: 33, ayah: 4, cat: "علمية", title: "قلب واحد في الجوف", verse: "﴿مَّا جَعَلَ اللَّهُ لِرَجُلٍ مِّن قَلْبَيْنِ فِي جَوْفِهِ﴾", desc: "حقيقة تشريحية قاطعة تنفي تعدد القلوب في جسد الإنسان الواحد.", source: "سورة الأحزاب - آية 4" },
+    { id: 53, surah: 34, ayah: 13, cat: "عددي", title: "قلة الشاكرين", verse: "﴿وَقَلِيلٌ مِّنْ عِبَادِيَ الشَّكُورُ﴾", desc: "تقديم الخبر (قليل) للتنبيه على ندرة الشكر الحقيقي بالقلب واللسان والعمل.", source: "سورة سبأ - آية 13" },
+    { id: 54, surah: 35, ayah: 28, cat: "بلاغة", title: "خشية العلماء", verse: "﴿إِنَّمَا يَخْشَى اللَّهَ مِنْ عِبَادِهِ الْعُلَمَاءُ﴾", desc: "تقديم لفظ الجلالة منصوباً على الفاعل (العلماء) لحصر الخشية الحقيقية في أهل العلم.", source: "سورة فاطر - آية 28" },
+    { id: 55, surah: 36, ayah: 38, cat: "علمية", title: "مستقر الشمس", verse: "﴿وَالشَّمْسُ تَجْرِي لِمُسْتَقَرٍّ لَّهَا﴾", desc: "إثبات جريان الشمس بسرعة هائلة نحو نقطة محددة في المجرة.", source: "سورة يس - آية 38" },
+    { id: 56, surah: 36, ayah: 40, cat: "عددي", title: "تناسق الكون", verse: "﴿لَا الشَّمْسُ يَنبَغِي لَهَا أَن تُدْرِكَ الْقَمَرَ﴾", desc: "انضباط المدارات الفلكية دون تصادم أو اختلال منذ خلق الكون.", source: "سورة يس - آية 40" },
+    { id: 57, surah: 37, ayah: 102, cat: "بلاغة", title: "فعل الخيرات بلا تردد", verse: "﴿يَا أَبَتِ افْعَلْ مَا تُؤْمَرُ﴾", desc: "إجابة إسماعيل عليه السلام بصيغة المضارع (تؤمر) لاستحضار الطاعة الفورية.", source: "سورة الصافات - آية 102" },
+    { id: 58, surah: 38, ayah: 29, cat: "بلاغة", title: "غاية إنزال القرآن", verse: "﴿كِتَابٌ أَنزَلْنَاهُ إِلَيْكَ مُبَارَكٌ لِّيَدَّبَّرُوا آيَاتِهِ﴾", desc: "التدبر والتفكر في المعاني هو المقصد الأسمى من نزول الآيات.", source: "سورة ص - آية 29" },
+    { id: 59, surah: 39, ayah: 6, cat: "علمية", title: "الظلمات الثلاث", verse: "﴿يَخْلُقُكُمْ فِي بُطُونِ أُمَّهَاتِكُمْ خَلْقًا مِّن بَعْدِ خَلْقٍ فِي ظُلُمَاتٍ ثَلَاثٍ﴾", desc: "إشارة دقيقة للأغشية الثلاثة المحيطة بالجنين: جدار البطن، جدار الرحم، والمشيمة.", source: "سورة الزمر - آية 6" },
+    { id: 60, surah: 39, ayah: 53, cat: "بلاغة", title: "أرجى آية في القرآن", verse: "﴿قُلْ يَا عِبَادِيَ الَّذِينَ أَسْرَفُوا عَلَىٰ أَنفُسِهِمْ لَا تَقْنَطُوا مِن رَّحْمَةِ اللَّهِ﴾", desc: "نسبهم إليه بقوله (يا عبادي) جبراً لقلوبهم رغم إسرافهم.", source: "سورة الزمر - آية 53" },
+    { id: 61, surah: 40, ayah: 60, cat: "عددي", title: "وعد الاستجابة", verse: "﴿وَقَالَ رَبُّكُمُ ادْعُونِي أَسْتَجِبْ لَكُمْ﴾", desc: "جواب الأمر (أستجب) مجزوم للدلالة على حتمية الاستجابة لمن دعا بصدق.", source: "سورة غافر - آية 60" },
+    { id: 62, surah: 41, ayah: 11, cat: "علمية", title: "السماء الدخانية", verse: "﴿ثُمَّ اسْتَوَىٰ إِلَى السَّمَاءِ وَهِيَ دُخَانٌ﴾", desc: "وصف الحالة الغازية الدخانية الأولى للكون قبل تشكل المجرات والنجوم.", source: "سورة فصلت - آية 11" },
+    { id: 63, surah: 41, ayah: 53, cat: "علمية", title: "الآيات في الآفاق والأنفس", verse: "﴿سَنُرِيهِمْ آيَاتِنَا فِي الْآفَاقِ وَفِي أَنفُسِهِمْ﴾", desc: "وعد إلهي متجدد بتكشف الحقائق العلمية في الكون وجسم الإنسان.", source: "سورة فصلت - آية 53" },
+    { id: 64, surah: 42, ayah: 11, cat: "بلاغة", title: "تنزيه الله المطلق", verse: "﴿لَيْسَ كَمِثْلِهِ شَيْءٌ وَهُوَ السَّمِيعُ الْبَصِيرُ﴾", desc: "زيادة الكاف في (كمثله) للمبالغة في نفي أي مشابهة بين الخالق والمخلوق.", source: "سورة الشورى - آية 11" },
+    { id: 65, surah: 43, ayah: 67, cat: "بلاغة", title: "أخلاء المتقين", verse: "﴿الْأَخِلَّاءُ يَوْمَئِذٍ بَعْضُهُمْ لِبَعْضٍ عَدُوٌّ إِلَّا الْمُتَّقِينَ﴾", desc: "الاستثناء يبين أن الصداقة القائمة على التقوى هي وحدها الباقية في الآخرة.", source: "سورة الزخرف - آية 67" },
+    { id: 66, surah: 44, ayah: 29, cat: "بلاغة", title: "عدم بكاء السماء والأرض", verse: "﴿فَمَا بَكَتْ عَلَيْهِمُ السَّمَاءُ وَالْأَرْضُ﴾", desc: "كناية بليغة عن هوان الطغاة بعد هلاكهم وعدم وجود عمل صالح يصعد لهم.", source: "سورة الدخان - آية 29" },
+    { id: 67, surah: 45, ayah: 24, cat: "بلاغة", title: "دحض المادية", verse: "﴿وَقَالُوا مَا هِيَ إِلَّا حَيَاتُنَا الدُّنْيَا﴾", desc: "تصوير دقيق لمنطق الماديين المنكرين للبعث عبر العصور.", source: "سورة الجاثية - آية 24" },
+    { id: 68, surah: 46, ayah: 15, cat: "عددي", title: "مدة الحمل والفطام", verse: "﴿وَحَمْلُهُ وَفِصَالُهُ ثَلَاثُونَ شَهْرًا﴾", desc: "بمقارنتها بآية الفطام في عامين (24 شهراً) يُستنبط أن أقل مدة للحمل هي 6 أشهر.", source: "سورة الأحقاف - آية 15" },
+    { id: 69, surah: 47, ayah: 24, cat: "بلاغة", title: "أقفال القلوب", verse: "﴿أَفَلَا يَتَدَبَّرُونَ الْقُرْآنَ أَمْ عَلَىٰ قُلُوبٍ أَقْفَالُهَا﴾", desc: "إضافة الأقفال للقلوب كأن لكل قلب قفلاً خاصاً من الغفلة لا يفتحه إلا التدبر.", source: "سورة محمد - آية 24" },
+    { id: 70, surah: 48, ayah: 1, cat: "بلاغة", title: "الفتح المبين", verse: "﴿إِنَّا فَتَحْنَا لَكَ فَتْحًا مُّبِينًا﴾", desc: "التعبير بالماضي عن صلح الحديبية لتحقق نتائجه العظيمة مستقبلاً.", source: "سورة الفتح - آية 1" },
+    { id: 71, surah: 49, ayah: 12, cat: "بلاغة", title: "تصوير الغيبة", verse: "﴿أَيُحِبُّ أَحَدُكُمْ أَن يَأْكُلَ لَحْمَ أَخِيهِ مَيْتًا فَكَرِهْتُمُوهُ﴾", desc: "تشبيه تنفيري بليغ يجعل النفس تنفر من الغيبة كما تنفر من أكل لحم الميت.", source: "سورة الحجرات - آية 12" },
+    { id: 72, surah: 50, ayah: 16, cat: "علمية", title: "أقرب من حبل الوريد", verse: "﴿وَنَحْنُ أَقْرَبُ إِلَيْهِ مِنْ حَبْلِ الْوَرِيدِ﴾", desc: "استحضار قرب علم الله وإحاطته بأدق تفاصيل جسد الإنسان وخواطره.", source: "سورة ق - آية 16" },
+    { id: 73, surah: 51, ayah: 47, cat: "علمية", title: "توسع الكون المستمر", verse: "﴿وَالسَّمَاءَ بَنَيْنَاهَا بِأَيْدٍ وَإِنَّا لَمُوسِعُونَ﴾", desc: "اسم الفاعل (لموسعون) يدل على التوسع المستمر للكون الذي أثبته الفلك الحديث.", source: "سورة الذاريات - آية 47" },
+    { id: 74, surah: 52, ayah: 6, cat: "علمية", title: "البحر المسجور", verse: "﴿وَالْبَحْرِ الْمَسْجُورِ﴾", desc: "إشارة للصهارة البركانية الملتهبة في قيعان المحيطات والبحار.", source: "سورة الطور - آية 6" },
+    { id: 75, surah: 53, ayah: 1, cat: "بلاغة", title: "القسم بالنجم إذا هوى", verse: "﴿وَالنَّجْمِ إِذَا هَوَىٰ﴾", desc: "مطلع صوتي مهيب يلفت الأنظار إلى عظمة الكون وصدق الوحي.", source: "سورة النجم - آية 1" },
+    { id: 76, surah: 54, ayah: 17, cat: "عددي", title: "تيسير القرآن للذكر", verse: "﴿وَلَقَدْ يَسَّرْنَا الْقُرْآنَ لِلذِّكْرِ فَهَلْ مِن مُّدَّكِرٍ﴾", desc: "تكررت هذه الآية أربع مرات في سورة القمر لترسيخ سهولة حفظ القرآن وتدبره.", source: "سورة القمر - آية 17" },
+    { id: 77, surah: 55, ayah: 19, cat: "علمية", title: "مرج البحرين", verse: "﴿مَرَجَ الْبَحْرَيْنِ يَلْتَقِيَانِ﴾", desc: "التقاء الكتل المائية المختلفة دون امتزاج كامل بفضل الفروق الفيزيائية.", source: "سورة الرحمن - آية 19" },
+    { id: 78, surah: 56, ayah: 75, cat: "علمية", title: "مواقع النجوم", verse: "﴿فَلَا أُقْسِمُ بِمَوَاقِعِ النُّجُومِ﴾", desc: "أقسم بمواقعها لا بالنجوم نفسها لأن الضوء الذي نراه يمثل مواقعها القديمة في الفضاء.", source: "سورة الواقعة - آية 75" },
+    { id: 79, surah: 57, ayah: 25, cat: "علمية", title: "إنزال الحديد", verse: "﴿وَأَنزَلْنَا الْحَدِيدَ فِيهِ بَأْسٌ شَدِيدٌ وَمَنَافِعُ لِلنَّاسِ﴾", desc: "تكون عنصر الحديد في النجوم العملاقة ونزوله إلى الأرض عبر النيازك.", source: "سورة الحديد - آية 25" },
+    { id: 80, surah: 58, ayah: 7, cat: "عددي", title: "إحاطة العلم في النجوى", verse: "﴿مَا يَكُونُ مِن نَّجْوَىٰ ثَلَاثَةٍ إِلَّا هُوَ رَابِعُهُمْ﴾", desc: "تدرج عددي بديع يغرس مراقبة الله في السر والعلن.", source: "سورة المجادلة - آية 7" },
+    { id: 81, surah: 59, ayah: 21, cat: "بلاغة", title: "خشوع الجبل", verse: "﴿لَوْ أَنزَلْنَا هَٰذَا الْقُرْآنَ عَلَىٰ جَبَلٍ لَّرَأَيْتَهُ خَاشِعًا مُّتَصَدِّعًا﴾", desc: "تصوير عظمة القرآن وتأثيره الذي يفتت الصخور الصماء لولا غفلة القلوب.", source: "سورة الحشر - آية 21" },
+    { id: 82, surah: 60, ayah: 7, cat: "بلاغة", title: "تحويل العداوة إلى مودة", verse: "﴿عَسَى اللَّهُ أَن يَجْعَلَ بَيْنَكُمْ وَبَيْنَ الَّذِينَ عَادَيْتُم مِّنْهُم مَّوَدَّةً﴾", desc: "الترجي من الله يفيد الوقوع المحقق لتأليف القلوب بعد الخصومة.", source: "سورة الممتحنة - آية 7" },
+    { id: 83, surah: 61, ayah: 4, cat: "بلاغة", title: "البنيان المرصوص", verse: "﴿كَأَنَّهُم بُنْيَانٌ مَّرْصُوصٌ﴾", desc: "تشبيه تماسك المؤمنين بالبناء المحكم الذي لا ثغرة فيه.", source: "سورة الصف - آية 4" },
+    { id: 84, surah: 62, ayah: 5, cat: "بلاغة", title: "الحمار يحمل أسفاراً", verse: "﴿كَمَثَلِ الْحِمَارِ يَحْمِلُ أَسْفَارًا﴾", desc: "مثل بليغ لمن يحمل العلم دون فهم أو عمل به.", source: "سورة الجمعة - آية 5" },
+    { id: 85, surah: 63, ayah: 4, cat: "بلاغة", title: "الخشب المسندة", verse: "﴿كَأَنَّهُمْ خُشُبٌ مُّسَنَّدَةٌ﴾", desc: "وصف المنافقين بأجسام بلا عقول ولا نفع كالخشب المسند إلى الجدار.", source: "سورة المنافقون - آية 4" },
+    { id: 86, surah: 64, ayah: 11, cat: "بلاغة", title: "هداية القلب عند المصيبة", verse: "﴿وَمَن يُؤْمِن بِاللَّهِ يَهْدِ قَلْبَهُ﴾", desc: "خص القلب بالهداية لأنه محل الرضا والتسليم عند نزول البلاء.", source: "سورة التغابن - آية 11" },
+    { id: 87, surah: 65, ayah: 3, cat: "عددي", title: "كفاية المتوكل", verse: "﴿وَمَن يَتَوَكَّلْ عَلَى اللَّهِ فَهُوَ حَسْبُهُ﴾", desc: "توكيد كفاية الله لمن اعتمد عليه بصدق في كل شؤونه.", source: "سورة الطلاق - آية 3" },
+    { id: 88, surah: 67, ayah: 3, cat: "علمية", title: "إتقان خلق السماوات", verse: "﴿مَّا تَرَىٰ فِي خَلْقِ الرَّحْمَٰنِ مِن تَفَاوُتٍ﴾", desc: "دعوة للنظر العلمي المتكرر لإثبات خلو الكون من أي خلل أو اضطراب.", source: "سورة الملك - آية 3" },
+    { id: 89, surah: 68, ayah: 4, cat: "بلاغة", title: "الخلق العظيم", verse: "﴿وَإِنَّكَ لَعَلَىٰ خُلُقٍ عَظِيمٍ﴾", desc: "استعلاء (على) يصور تمكن الأخلاق الفاضلة في شخصية النبي ﷺ.", source: "سورة القلم - آية 4" },
+    { id: 90, surah: 70, ayah: 19, cat: "علمية", title: "طبيعة الإنسان الهلوع", verse: "﴿إِنَّ الْإِنسَانَ خُلِقَ هَلُوعًا﴾", desc: "تحليل نفسي دقيق لجزع الإنسان عند الضر ومنعه عند الخير إلا المصلين.", source: "سورة المعارج - آية 19" },
+    { id: 91, surah: 71, ayah: 10, cat: "عددي", title: "ثمرات الاستغفار", verse: "﴿فَقُلْتُ اسْتَغْفِرُوا رَبَّكُمْ إِنَّهُ كَانَ غَفَّارًا﴾", desc: "صيغة المبالغة (غفاراً) مع ربط الاستغفار بالمطر والرزق والذرية.", source: "سورة نوح - آية 10" },
+    { id: 92, surah: 75, ayah: 4, cat: "علمية", title: "تسوية البنان", verse: "﴿بَلَىٰ قَادِرِينَ عَلَىٰ أَن نُّسَوِّيَ بَنَانَهُ﴾", desc: "إعجاز البصمة الوراثية والجلدية في أطراف الأصابع التي لا تتطابق بين اثنين.", source: "سورة القيامة - آية 4" },
+    { id: 93, surah: 78, ayah: 7, cat: "علمية", title: "الجبال أوتاداً", verse: "﴿وَالْجِبَالَ أَوْتَادًا﴾", desc: "للجبال جذور عميقة في القشرة الأرضية تشبه الأوتاد وتثبت الصفائح التكتونية.", source: "سورة النبأ - آية 7" },
+    { id: 94, surah: 81, ayah: 18, cat: "علمية", title: "تنفس الصبح", verse: "﴿وَالصُّبْحِ إِذَا تَنَفَّسَ﴾", desc: "استعارة مكنية رقيقة لتسلل الضوء تدريجياً وتجدد الأكسجين بالبناء الضوئي عند الفجر.", source: "سورة التكوير - آية 18" },
+    { id: 95, surah: 86, ayah: 11, cat: "علمية", title: "السماء ذات الرجع", verse: "﴿وَالسَّمَاءِ ذَاتِ الرَّجْعِ﴾", desc: "إشارة لدورة المياه في الطبيعة وعودة البخار مطراً، وكذلك عكس الموجات.", source: "سورة الطارق - آية 11" },
+    { id: 96, surah: 87, ayah: 1, cat: "بلاغة", title: "التسبيح والتنزيه", verse: "﴿سَبِّحِ اسْمَ رَبِّكَ الْأَعْلَى﴾", desc: "تنزيه الله عن كل نقص مع إثبات العلو المطلق.", source: "سورة الأعلى - آية 1" },
+    { id: 97, surah: 88, ayah: 17, cat: "علمية", title: "التأمل في خلق الإبل", verse: "﴿أَفَلَا يَنظُرُونَ إِلَى الْإِبِلِ كَيْفَ خُلِقَتْ﴾", desc: "تكيف مذهل في جفون الإبل وخفها وسنامها لتحمل أقسى ظروف الصحراء.", source: "سورة الغاشية - آية 17" },
+    { id: 98, surah: 94, ayah: 5, cat: "عددي", title: "عسر واحد ويسران", verse: "﴿فَإِنَّ مَعَ الْعُسْرِ يُسْرًا ۝ إِنَّ مَعَ الْعُسْرِ يُسْرًا﴾", desc: "العسر معرف بـ (أل) فهو واحد مكرر، واليسر منكر فهو يسران مختلفان.", source: "سورة الشرح - آية 5-6" },
+    { id: 99, surah: 96, ayah: 16, cat: "علمية", title: "الناصية الكاذبة الخاطئة", verse: "﴿نَاصِيَةٍ كَاذِبَةٍ خَاطِئَةٍ﴾", desc: "أثبت علم الأعصاب أن الفص الجبهي (الناصية) هو مركز اتخاذ القرار والصدق والكذب.", source: "سورة العلق - آية 16" },
+    { id: 100, surah: 103, ayah: 1, cat: "عددي", title: "منهج النجاة في أربع صفات", verse: "﴿وَالْعَصْرِ ۝ إِنَّ الْإِنسَانَ لَفِي خُسْرٍ﴾", desc: "سورة وجيزة جمعت أصول النجاة: الإيمان، العمل الصالح، التواصي بالحق، والتواصي بالصبر.", source: "سورة العصر - آية 1-3" }
+];
+
+// إظهار وإخفاء زر الطلوع للأعلى عند التمرير
+const scrollTopBtn = document.getElementById("scrollTopBtn");
+window.addEventListener("scroll", () => {
+    if (window.scrollY > 300) {
+        scrollTopBtn.classList.add("visible");
+    } else {
+        scrollTopBtn.classList.remove("visible");
+    }
+});
+
+function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+// نظام سلة المحفوظات
+let savedItems = JSON.parse(localStorage.getItem("quran_saved_items")) || [];
+
+function updateSavedCount() {
+    document.getElementById("savedCount").textContent = savedItems.length;
+}
+updateSavedCount();
+
+function toggleSaveItem(id, btn) {
+    const item = itemsData.find(i => i.id === id);
+    const index = savedItems.findIndex(i => i.id === id);
+
+    if (index > -1) {
+        savedItems.splice(index, 1);
+        btn.textContent = "حفظ الآية";
+        btn.classList.remove("saved");
+    } else {
+        savedItems.push(item);
+        btn.textContent = "محفوظة";
+        btn.classList.add("saved");
+    }
+    localStorage.setItem("quran_saved_items", JSON.stringify(savedItems));
+    updateSavedCount();
+    if (savedPage.style.display === "block") renderSavedItems();
+}
+
+const mainPage = document.getElementById("mainPage");
+const savedPage = document.getElementById("savedPage");
+const audioPlayer = document.getElementById("quranAudioPlayer");
+let currentPlayingBtn = null;
+
+function playAyahAudio(surah, ayah, btnElement) {
+    const audioUrl = `https://everyayah.com/data/Alafasy_128kbps/${String(surah).padStart(3, "0")}${String(ayah).padStart(3, "0")}.mp3`;
+    if (currentPlayingBtn === btnElement && !audioPlayer.paused) {
+        audioPlayer.pause();
+        btnElement.textContent = "استماع";
+        btnElement.classList.remove("playing");
+        currentPlayingBtn = null;
+        return;
+    }
+    if (currentPlayingBtn) {
+        currentPlayingBtn.textContent = "استماع";
+        currentPlayingBtn.classList.remove("playing");
+    }
+    currentPlayingBtn = btnElement;
+    audioPlayer.src = audioUrl;
+    btnElement.textContent = "جاري التشغيل...";
+    audioPlayer.play().then(() => {
+        btnElement.textContent = "إيقاف";
+        btnElement.classList.add("playing");
+    }).catch(() => {
+        btnElement.textContent = "استماع";
+    });
+    audioPlayer.onended = () => {
+        btnElement.textContent = "استماع";
+        btnElement.classList.remove("playing");
+        currentPlayingBtn = null;
+    };
+}
+
+function showMainPage(anchor = "") {
+    savedPage.style.display = "none";
+    mainPage.style.display = "block";
+    if (anchor) {
+        const el = document.querySelector(anchor);
+        if (el) el.scrollIntoView({ behavior: "smooth" });
+    } else {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+}
+
+function showSavedPage() {
+    mainPage.style.display = "none";
+    savedPage.style.display = "block";
+    renderSavedItems();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+const touchCards = document.getElementById("touchCards");
+const searchInput = document.getElementById("searchInput");
+const catBtns = document.querySelectorAll(".cat-btn");
+const emptyMessage = document.getElementById("emptyMessage");
+
+function renderItems(items, container = touchCards) {
+    container.innerHTML = "";
+    if (items.length === 0) {
+        if (container === touchCards) emptyMessage.hidden = false;
+        return;
+    }
+    if (container === touchCards) emptyMessage.hidden = true;
+
+    items.forEach((item) => {
+        const globalIndex = itemsData.findIndex(i => i.id === item.id);
+        const isSaved = savedItems.some(i => i.id === item.id);
+        const card = document.createElement("article");
+        card.className = "card";
+        card.innerHTML = `
+            <div>
+                <div class="card-top">
+                    <span class="card-label">${item.cat}</span>
+                    <span class="card-index">#${item.id}</span>
+                </div>
+                <h3>${item.title}</h3>
+                <p class="verse">${item.verse}</p>
+                <p class="card-source">${item.source}</p>
+                <p class="card-desc">${item.desc}</p>
+            </div>
+            <div class="card-actions">
+                <button class="read-btn" onclick="openModal(${globalIndex})">اقرأ كاملة</button>
+                <button class="save-btn ${isSaved ? 'saved' : ''}" onclick="toggleSaveItem(${item.id}, this)">${isSaved ? 'محفوظة' : 'حفظ الآية'}</button>
+                <button class="audio-btn" onclick="playAyahAudio(${item.surah}, ${item.ayah}, this)">استماع</button>
+            </div>
+        `;
+        container.appendChild(card);
+    });
+}
+
+function renderSavedItems() {
+    const container = document.getElementById("savedCardsContainer");
+    const emptySaved = document.getElementById("emptySavedMessage");
+    container.innerHTML = "";
+    if (savedItems.length === 0) {
+        emptySaved.hidden = false;
+        return;
+    }
+    emptySaved.hidden = true;
+    renderItems(savedItems, container);
+}
+
+// دالة إزالة التشكيل لتسهيل البحث الدقيق
+function removeTashkeel(text) {
+    return text
+        .replace(/[\u064B-\u065F\u0670\u06D6-\u06ED]/g, "")
+        .replace(/[﴿﴾]/g, "")
+        .replace(/[أإآٱ]/g, "ا")
+        .replace(/ة/g, "ه")
+        .replace(/ى/g, "ي")
+        .trim();
+}
+
+let activeCat = "all";
+function filterData() {
+    const query = removeTashkeel(searchInput.value.toLowerCase());
+    const filtered = itemsData.filter(item => {
+        const matchesCat = activeCat === "all" || item.cat === activeCat;
+        const cleanTitle = removeTashkeel(item.title.toLowerCase());
+        const cleanVerse = removeTashkeel(item.verse.toLowerCase());
+        const cleanSource = removeTashkeel(item.source.toLowerCase());
+        const cleanDesc = removeTashkeel(item.desc.toLowerCase());
+        const matchesSearch = cleanTitle.includes(query) || cleanVerse.includes(query) || cleanSource.includes(query) || cleanDesc.includes(query);
+        return matchesCat && matchesSearch;
+    });
+    renderItems(filtered);
+}
+
+catBtns.forEach(btn => {
+    btn.addEventListener("click", () => {
+        catBtns.forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        activeCat = btn.dataset.cat;
+        filterData();
+    });
+});
+
+searchInput.addEventListener("input", filterData);
+
+const modal = document.getElementById("articleModal");
+const closeModal = document.getElementById("closeModal");
+const modalAudioBtn = document.getElementById("modalAudioBtn");
+const modalAiAskBtn = document.getElementById("modalAiAskBtn");
+
+function openModal(index) {
+    const item = itemsData[index];
+    document.getElementById("modalCat").textContent = item.cat;
+    document.getElementById("modalTitle").textContent = item.title;
+    document.getElementById("modalVerse").textContent = item.verse;
+    document.getElementById("modalText").textContent = item.desc + " هذا التناسق الدقيق يفتح آفاق التدبر الفوري للكلمات ويكشف عن أسرار النظم القرآني الفريد.";
+    document.getElementById("modalSource").textContent = item.source;
+    
+    modalAudioBtn.onclick = () => playAyahAudio(item.surah, item.ayah, modalAudioBtn);
+    modalAiAskBtn.onclick = () => {
+        modal.classList.remove("active");
+        askAiAboutAyah(item);
+    };
+
+    modal.classList.add("active");
+}
+
+closeModal.addEventListener("click", () => modal.classList.remove("active"));
+modal.addEventListener("click", (e) => { if (e.target === modal) modal.classList.remove("active"); });
+
+function toggleAiPanel(forceOpen = false) {
+    const panel = document.getElementById("aiPanel");
+    if (forceOpen) panel.classList.add("open");
+    else panel.classList.toggle("open");
+}
+
+// قاموس معاني الحروف والأدوات القرآنية للتحليل الذكي
+const particlesDict = {
+    "واو": "حرف عطف يفيد مطلق الجمع والاشتراك، أو واو القسم للتعظيم والتأكيد، أو واو الحال.",
+    "في": "حرف جر يفيد الظرفية المكانية أو الزمانية، أو الاستغراق والتمكن في المعنى.",
+    "من": "حرف جر يفيد الابتداء، أو التبعيض، أو بيان الجنس.",
+    "علي": "حرف جر يفيد الاستعلاء الحسي أو المعنوي والتمكن.",
+    "الي": "حرف جر يفيد انتهاء الغاية الزمانية أو المكانية.",
+    "ان": "حرف توكيد ونصب ينفي الشك ويثبت الخبر بقوة.",
+    "اذا": "ظرف لما يستقبل من الزمان يفيد تحقق الوقوع.",
+    "لا": "حرف نفي أو نهي يفيد الترك أو استغراق النفي.",
+    "ما": "تأتي نافية، أو موصولة بمعنى الذي، أو استفهامية للتعظيم والتعجب.",
+    "قد": "حرف تحقيق وتأكيد إذا دخل على الفعل الماضي."
+};
+
+// تحليل الآية كلمة بكلمة بشكل حقيقي ومنظم
+function analyzeVerseWords(item) {
+    const rawWords = item.verse.replace(/[﴿﴾۝]/g, "").trim().split(/\s+/);
+    let breakdown = `📖 التحليل البياني للآية: ${item.verse}\n📍 المصدر: ${item.source}\n\n`;
+    breakdown += `💡 السر البياني العام:\n${item.desc}\n\n`;
+    breakdown += `🔍 تفكيك كلمات الآية:\n`;
+
+    rawWords.forEach((word, idx) => {
+        const cleanW = removeTashkeel(word);
+        let note = "مفردة محورية تؤدي دلالة دقيقة في سياق الآية.";
+        if (cleanW.startsWith("و") && cleanW.length > 2) note = "مبدوءة بالواو للربط أو القسم، وتضيف بعداً دلالياً للسياق.";
+        else if (cleanW.startsWith("ال")) note = "معرّفة بـ (أل) لإفادة العهد أو الاستغراق والشمول.";
+        else if (particlesDict[cleanW]) note = particlesDict[cleanW];
+        breakdown += `${idx + 1}. (${word}): ${note}\n`;
+    });
+
+    return breakdown;
+}
+
+// === محرك الذكاء الاصطناعي المحلي المطور ===
+function sendAiMessage(customItem = null) {
+    const input = document.getElementById("aiInput");
+    const messagesBox = document.getElementById("aiMessages");
+    const rawQuery = customItem ? customItem.verse : input.value.trim();
+    if (!rawQuery) return;
+
+    if (!customItem) {
+        const userDiv = document.createElement("div");
+        userDiv.className = "ai-msg user";
+        userDiv.textContent = rawQuery;
+        messagesBox.appendChild(userDiv);
+        input.value = "";
+    }
+
+    const botDiv = document.createElement("div");
+    botDiv.className = "ai-msg bot";
+    botDiv.textContent = "جاري الفحص والتحليل في قاعدة البيانات...";
+    messagesBox.appendChild(botDiv);
+    messagesBox.scrollTop = messagesBox.scrollHeight;
+
+    setTimeout(() => {
+        let reply = "";
+
+        if (customItem) {
+            reply = analyzeVerseWords(customItem);
+        } else {
+            const cleanQuery = removeTashkeel(rawQuery.toLowerCase());
+            const stopWords = ["اشرح", "لي", "هذي", "هذه", "الايه", "ايه", "ما", "معني", "تفسير", "كلمه", "حرف", "في", "من", "عن", "هل", "موجوده", "سوره"];
+            const queryWords = cleanQuery.split(/\s+/).filter(w => w.length > 1 && !stopWords.includes(w));
+
+            let bestMatch = null;
+            let maxScore = 0;
+
+            itemsData.forEach(item => {
+                const cleanVerse = removeTashkeel(item.verse);
+                const cleanTitle = removeTashkeel(item.title);
+                const cleanSource = removeTashkeel(item.source);
+                let score = 0;
+
+                if (cleanVerse.includes(cleanQuery) && cleanQuery.length >= 4) score += 10;
+                if (cleanTitle.includes(cleanQuery) && cleanQuery.length >= 3) score += 8;
+                if (cleanSource.includes(cleanQuery) && cleanQuery.length >= 4) score += 6;
+
+                queryWords.forEach(qw => {
+                    if (cleanVerse.includes(qw)) score += 3;
+                    if (cleanTitle.includes(qw)) score += 2;
+                    if (cleanSource.includes(qw)) score += 2;
+                });
+
+                if (score > maxScore) {
+                    maxScore = score;
+                    bestMatch = item;
+                }
+            });
+
+            const singleWord = removeTashkeel(rawQuery.replace(/حرف|كلمة|معنى/g, "").trim());
+            if (singleWord.length <= 4 && particlesDict[singleWord]) {
+                reply = `تحليل الحرف أو الأداة (${rawQuery}):\n• الوظيفة النحوية والبلاغية: ${particlesDict[singleWord]}\n• الأثر في القرآن: يضبط العلاقات بين الجمل ويمنح النص القرآني دقة وإيجازاً لا مثيل لهما.`;
+            } else if (bestMatch && maxScore >= 3) {
+                reply = analyzeVerseWords(bestMatch);
+            } else {
+                reply = `عذراً، هذه الآية أو العبارة غير موجودة حالياً في مكتبتنا (المكتبة تضم حالياً 100 آية مختارة فقط).\n\nيمكنك البحث في شريط البحث بالأعلى لاستعراض الآيات المتوفرة، أو اسألني عن أي آية من المكتبة مثل: (والليل إذا سجى)، (ألم نشرح لك صدرك)، أو (وجعلنا من الماء كل شيء حي).`;
+            }
+        }
+
+        botDiv.textContent = reply;
+        messagesBox.scrollTop = messagesBox.scrollHeight;
+    }, 350);
+}
+
+function askAiAboutAyah(item) {
+    toggleAiPanel(true);
+    const messagesBox = document.getElementById("aiMessages");
+    const userDiv = document.createElement("div");
+    userDiv.className = "ai-msg user";
+    userDiv.textContent = `اشرح لي هذه الآية كلمة بكلمة: ${item.verse} (${item.source})`;
+    messagesBox.appendChild(userDiv);
+    sendAiMessage(item);
+}
+
+renderItems(itemsData);
+</script>
+
+</body>
+</html>
