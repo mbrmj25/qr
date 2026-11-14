@@ -1,12 +1,20 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>لمسات بيانية قرآنية - الإصدار الذكي المتقدم</title>
-<h1>نقوم ببعض اعمال الصانيه في الموقع 
+from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
+from pathlib import Path
+import webbrowser
 
-المطور: اوس البكري</h1>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
-    <style>
+HOST = "127.0.0.1"
+PORT = 8000
+PROJECT_DIR = Path(__file__).resolve().parent
+
+def main():
+    server = ThreadingHTTPServer((HOST, PORT), lambda *args, **kwargs: SimpleHTTPRequestHandler(*args, directory=str(PROJECT_DIR), **kwargs))
+    url = f"http://{HOST}:{PORT}"
+    print(f"السيرفر يعمل الآن بسرعة فائقة: {url}")
+    webbrowser.open(url)
+    try:
+        server.serve_forever()
+    except KeyboardInterrupt:
+        server.server_close()
+
+if __name__ == "__main__":
+    main()
