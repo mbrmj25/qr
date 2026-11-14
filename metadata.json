@@ -1,0 +1,6 @@
+{
+  "name": "لمسات بيانية قرآنية - المساعد الذكي",
+  "description": "مكتبة اللمسات البيانية القرآنية مع نظام ذكاء اصطناعي حقيقي للتحليل البلاغي واللغوي وتدبر الحروف والكلمات.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
